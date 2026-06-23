@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tolosako Eguraldi Historikoa</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,Arial,sans-serif;background:linear-gradient(180deg,#dff3ff,#f7fcff);color:#163247}
+header{padding:24px 16px;text-align:center;background:#0f6fa8;color:white}
+header h1{margin:4px 0;font-size:clamp(1.6rem,5vw,2.6rem)}
+header p{margin:6px 0 0;opacity:.9}
+main{max-width:1400px;width:95%;margin:auto;padding:16px}
+.card{background:white;border-radius:20px;padding:18px;margin-bottom:16px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.search,.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select,button{font-size:1rem;padding:13px;border-radius:14px;border:1px solid #c7dce8}
+input,select{flex:1;min-width:180px}
+button{background:#0f6fa8;color:white;border:none;cursor:pointer;font-weight:700}
+button:hover{background:#095986}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.data-box{background:#eef8ff;border-radius:18px;padding:16px;text-align:center}
+.icon{font-size:2rem}
+.value{font-size:1.6rem;font-weight:800;margin-top:6px}
+.label{font-size:.9rem;opacity:.75}
+canvas{width:100%;height:320px;background:#f7fcff;border-radius:16px}
+.menu{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.menu button,.small-btn,.tab-btn{background:white;color:#0f6fa8;border:2px solid #b8dff2}
+.tab-btn.active{background:#0f6fa8;color:white;border-color:#0f6fa8}
+.panel{display:none;line-height:1.6}
+.panel.active{display:block}
+table{width:100%;border-collapse:collapse;margin-top:14px;overflow:hidden}
+th,td{padding:10px;border-bottom:1px solid #d8edf7;text-align:center;vertical-align:top}
+th{background:#eef8ff}
+.summary-box{background:#eef8ff;border-radius:16px;padding:16px}
+.badge{display:inline-block;background:#e4f4ff;padding:6px 10px;border-radius:999px;margin:4px;font-weight:700}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.info-card{background:#eef8ff;border-radius:16px;padding:14px}
+.small-note{font-size:.9rem;opacity:.75}
+.source-badge{display:inline-block;margin-top:10px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:6px 10px;border-radius:999px;font-weight:700;font-size:.9rem}
+.warning-box{background:#fff7df;border:1px solid #f2d48a;border-radius:16px;padding:12px;margin-top:12px}
+.status-pill{display:inline-block;background:#dff7e8;color:#17633a;padding:7px 12px;border-radius:999px;font-weight:800;margin-top:8px}
+.table-wrap{overflow-x:auto}
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .menu{grid-template-columns:repeat(2,1fr)}
+  .info-grid{grid-template-columns:1fr}
+  canvas{height:240px}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div style="font-size:0.95rem;opacity:.9;">📍 TOLOSA / ALEGIA</div>
+  <h1>🌦️ Tolosako Eguraldi Historikoa</h1>
+  <p>Eguraldi historikoaren kontsulta-sistema · v0.8</p>
+  <div id="dataStatus" class="source-badge">🟡 Datuak kargatzen...</div>
+  <div class="status-pill">🟢 Simulatutako datuak</div>
+</header>
+
+<main>
+
+<section class="card">
+  <h2>📅 Data bilatu</h2>
+  <div class="search">
+    <select id="stationInput">
+      <option selected>Alegia</option>
+      <option>Belauntza</option>
+    </select>
+    <input type="date" id="dateInput">
+    <button onclick="bilatu()">Bilatu</button>
+  </div>
+</section>
+
+<section class="card">
+  <h2 id="egunarenIzenburua">Gaurko datuak</h2>
+  <div class="grid">
+    <div class="data-box"><div class="icon">🌡️</div><div class="value" id="maxTemp">-- ºC</div><div class="label">Tenperatura maximoa</div></div>
+    <div class="data-box"><div class="icon">❄️</div><div class="value" id="minTemp">-- ºC</div><div class="label">Tenperatura minimoa</div></div>
+    <div class="data-box"><div class="icon">🌧️</div><div class="value" id="rain">-- mm</div><div class="label">Prezipitazioa</div></div>
+    <div class="data-box"><div class="icon">💧</div><div class="value" id="humidity">-- %</div><div class="label">Hezetasuna</div></div>
+    <div class="data-box"><div class="icon">❄️</div><div class="value" id="snow">--</div><div class="label">Elurra</div></div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>📈 Grafikoa</h2>
+  <div class="row" style="margin-bottom:12px;">
+    <button class="small-btn" onclick="grafikoMota='egunak'; marraztuGrafikoa()">30 egun</button>
+    <button class="small-btn" onclick="grafikoMota='hilabeteak'; marraztuGrafikoa()">12 hilabete</button>
+    <button class="small-btn" onclick="grafikoMota='urteak'; marraztuGrafikoa()">5 urte</button>
+  </div>
+  <canvas id="chart" width="1200" height="360"></canvas>
+</section>
+
+<section class="card">
+  <div class="menu">
+    <button onclick="erakutsi('eguna')">📅 Eguna</button>
+    <button onclick="erakutsi('duela')">⏳ Gaur duela</button>
+    <button onclick="erakutsi('grafikoak')">📈 Grafikoak</button>
+    <button onclick="erakutsi('errekorrak')">🏆 Errekorrak</button>
+    <button onclick="erakutsi('inauteriak')">🎭 Iñauteriak</button>
+    <button onclick="erakutsi('sanjoan')">🔥 San Joanak</button>
+  </div>
+</section>
+
+<section class="card panel active" id="eguna">
+  <h2>📅 Egunaren laburpena</h2>
+  <div class="summary-box" id="laburpena"></div>
+</section>
+
+<section class="card panel" id="duela">
+  <h2>⏳ Gaur duela...</h2>
+  <div id="duelaEmaitza" class="info-grid"></div>
+  <p class="small-note">2025eko datuak Google Sheets-etik irakurtzen dira; beste urteetan datu simulatuak erabiltzen dira oraingoz.</p>
+</section>
+
+<section class="card panel" id="grafikoak">
+  <h2>📈 Grafikoen azalpena</h2>
+  <p>30 eguneko, 12 hilabeteko edo 5 urteko bilakaera ikus daiteke. 2025eko datuak errealak dira; beste urteetan datuak simulatuak dira oraingoz.</p>
+</section>
+
+<section class="card panel" id="errekorrak">
+  <h2>🏆 Errekorrak</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Errekorra</th><th>Balioa</th><th>Data</th><th>Estazioa</th><th>Azalpena</th></tr>
+      <tr><td>🔥 Egun beroena</td><td><strong>39,8 ºC</strong></td><td>2019ko uztailaren 23a</td><td>Alegia</td><td>Tenperatura maximo historiko altuena.</td></tr>
+      <tr><td>🥶 Egun hotzena</td><td><strong>-4,2 ºC</strong></td><td>2012ko otsailaren 4a</td><td>Alegia</td><td>Tenperatura minimo historiko baxuena.</td></tr>
+      <tr><td>🌧️ Egun euritsuena</td><td><strong>88 mm</strong></td><td>2021eko abenduaren 9a</td><td>Alegia</td><td>Egun bakarreko prezipitazio handiena.</td></tr>
+    </table>
+  </div>
+  <p><small>Oraingoz adibideko datuak dira.</small></p>
+</section>
+
+<section class="card panel" id="inauteriak">
+  <h2>🎭 Tolosako Iñauteriak</h2>
+  <p>Urte bakarra edo urte-tartea aukeratu dezakezu.</p>
+  <div class="row" style="margin-bottom:12px;">
+    <button id="btnInauteriBakarra" class="tab-btn active" onclick="aldatuInauteriModua('bakarra')">Urte bakarra</button>
+    <button id="btnInauteriTartea" class="tab-btn" onclick="aldatuInauteriModua('tartea')">Urte-tartea</button>
+  </div>
+
+  <div id="inauteriBakarraBox" class="row">
+    <select id="carnivalYear"></select>
+    <button onclick="ikusiInauteriak()">Ikusi urte bakarra</button>
+  </div>
+
+  <div id="inauteriTarteaBox" class="row" style="display:none;">
+    <select id="carnivalStartYear"></select>
+    <select id="carnivalEndYear"></select>
+    <button onclick="ikusiInauteriTartea()">Ikusi urte-tartea</button>
+  </div>
+
+  <div id="inauteriakEmaitza"></div>
+</section>
+
+<section class="card panel" id="sanjoan">
+  <h2>🔥 San Joanak</h2>
+  <p>Hasierako eta amaierako urtea aukeratu, eta ekainaren 24ko datuak taula batean ikusiko dituzu.</p>
+  <div class="row">
+    <select id="sanJoanStartYear"></select>
+    <select id="sanJoanEndYear"></select>
+    <button onclick="ikusiSanJoanTartea()">Ikusi San Joanak</button>
+  </div>
+  <div id="sanJoanEmaitza"></div>
+</section>
+
+</main>
+
+<script>
+const input=document.getElementById("dateInput");
+input.value=new Date().toISOString().split("T")[0];
+let grafikoMota="egunak";
+let inauteriModua="bakarra";
+
+const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7vwdOMPgxf8t1TE_NfAiDzxl8PmOW-_GbM4dvHcNMKSnUPbfxOq4c1nMVJ37Y9DoWstz_rRqX6mnM/pub?gid=1792320740&single=true&output=csv";
+let weatherByDate={};
+let realDataLoaded=false;
+
+function fakeWeather(dateString){
+  const d=new Date(dateString);
+  const seed=d.getDate()+d.getMonth()*11+d.getFullYear()*3;
+  const max=14+(seed%20);
+  const min=max-(5+seed%9);
+  const rain=(seed%4===0)?(seed%42):0;
+  const humidity=40+(seed%55);
+  const snow=(min<=1 && rain>0) ? "Bai" : "Ez";
+  return{max,min,rain,humidity,snow,source:"simulatua"};
+}
+
+function parseNumber(value){
+  if(value===undefined || value===null) return null;
+  const s=String(value).trim();
+  if(!s) return null;
+  if(/^\d{4}-\d{2}-\d{2}/.test(s)) return null;
+  const n=parseFloat(s.replace(",","."));
+  return Number.isFinite(n)?n:null;
+}
+
+function parseCSV(text){
+  const rows=[];
+  let row=[],cell="",inQuotes=false;
+  for(let i=0;i<text.length;i++){
+    const ch=text[i], next=text[i+1];
+    if(ch==='"'){
+      if(inQuotes && next==='"'){ cell+='"'; i++; }
+      else inQuotes=!inQuotes;
+    }else if(ch===',' && !inQuotes){ row.push(cell); cell=""; }
+    else if((ch==='\n' || ch==='\r') && !inQuotes){
+      if(ch==='\r' && next==='\n') i++;
+      row.push(cell); cell="";
+      if(row.some(v=>String(v).trim()!=="")) rows.push(row);
+      row=[];
+    }else cell+=ch;
+  }
+  if(cell || row.length){ row.push(cell); rows.push(row); }
+  return rows;
+}
+
+async function loadWeatherData(){
+  const status=document.getElementById("dataStatus");
+  try{
+    const response=await fetch(CSV_URL);
+    if(!response.ok) throw new Error("HTTP "+response.status);
+    const text=await response.text();
+    const rows=parseCSV(text);
+    const headers=rows.shift().map(h=>h.trim().toUpperCase());
+    const idx=name=>headers.indexOf(name);
+    const iData=idx("DATA"), iMax=idx("MAX"), iMin=idx("MIN"), iRain=idx("EURIA"), iHum=idx("HEZETASUNA"), iStation=idx("ESTAZIOA"), iCode=idx("KODEA");
+
+    rows.forEach(r=>{
+      const date=(r[iData]||"").trim();
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(date)) return;
+      const max=parseNumber(r[iMax]);
+      const min=parseNumber(r[iMin]);
+      const rain=parseNumber(r[iRain]);
+      const humidity=parseNumber(r[iHum]);
+      const fallback=fakeWeather(date);
+      const finalMax=max ?? fallback.max;
+      const finalMin=min ?? fallback.min;
+      const finalRain=rain ?? 0;
+      const finalHumidity=humidity ?? fallback.humidity;
+      weatherByDate[date]={
+        max:finalMax,
+        min:finalMin,
+        rain:finalRain,
+        humidity:finalHumidity,
+        snow:(finalMin<=1 && finalRain>0)?"Bai":"Ez",
+        station:(r[iStation]||"Alegia").trim(),
+        code:(r[iCode]||"C0E9").trim(),
+        source:"erreala"
+      };
+    });
+    realDataLoaded=true;
+    status.textContent=`🟢 Google Sheets/Euskalmet datuak kargatuta (${Object.keys(weatherByDate).length} egun)`;
+  }catch(err){
+    console.error(err);
+    status.textContent="🔴 Ezin izan dira Google Sheets datuak kargatu; datu simulatuak erabiliko dira";
+  }
+  bilatu();
+}
+
+function getWeather(dateString){
+  return weatherByDate[dateString] || fakeWeather(dateString);
+}
+
+function sourceLabel(data){
+  return data.source==="erreala" ? "🟢 datu erreala" : "🟡 datu simulatua";
+}
+
+function bilatu(){
+  const date=input.value;
+  const station=document.getElementById("stationInput").value;
+  const data=getWeather(date);
+  const avg=((data.max+data.min)/2).toFixed(1);
+
+  document.getElementById("egunarenIzenburua").textContent=station+" · "+formatDate(date);
+  document.getElementById("maxTemp").textContent=data.max+" ºC";
+  document.getElementById("minTemp").textContent=data.min+" ºC";
+  document.getElementById("rain").textContent=data.rain+" mm";
+  document.getElementById("humidity").textContent=data.humidity+" %";
+  document.getElementById("snow").textContent=data.snow;
+
+  document.getElementById("laburpena").innerHTML=
+    "<h3>"+formatDate(date)+"</h3>"+
+    "<span class='badge'>🌡️ Max: "+data.max+" ºC</span>"+
+    "<span class='badge'>❄️ Min: "+data.min+" ºC</span>"+
+    "<span class='badge'>📊 Batez bestekoa: "+avg+" ºC</span>"+
+    "<span class='badge'>🌧️ Euria: "+data.rain+" mm</span>"+
+    "<span class='badge'>💧 Hezetasuna: "+data.humidity+" %</span>"+
+    "<span class='badge'>❄️ Elurra: "+data.snow+"</span>"+
+    "<span class='badge'>"+sourceLabel(data)+"</span>"+
+    "<p><strong>"+egunMota(data)+"</strong></p>";
+
+  gaurDuela(date);
+  marraztuGrafikoa();
+}
+
+function egunMota(data){
+  let txt="";
+  if(data.max>=30) txt+="Egun beroa";
+  else if(data.max>=22) txt+="Egun epela";
+  else if(data.max>=12) txt+="Egun freskoa";
+  else txt+="Egun hotza";
+  if(data.rain===0) txt+=" eta lehorra izan zen.";
+  else if(data.rain<10) txt+=" eta euri pixka batekin.";
+  else txt+=" eta euritsua izan zen.";
+  return txt;
+}
+
+function formatDate(dateString){
+  const d=new Date(dateString);
+  return d.toLocaleDateString("eu-ES",{year:"numeric",month:"long",day:"numeric"});
+}
+
+function erakutsi(id){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function marraztuGrafikoa(){
+  const canvas=document.getElementById("chart");
+  const ctx=canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  let values=[],title="",labels=[];
+
+  if(grafikoMota==="egunak"){
+    title="Tenperatura maximoak · azken 30 egunak";
+    for(let i=1;i<=30;i++){values.push(14+Math.sin(i/4)*7+(i%5));labels.push(i);}
+  }
+  if(grafikoMota==="hilabeteak"){
+    title="Tenperatura maximoen batez bestekoa · 12 hilabete";
+    for(let i=1;i<=12;i++){values.push(10+Math.sin(i/2)*9+(i%3));labels.push(i);}
+  }
+  if(grafikoMota==="urteak"){
+    title="Urteko batez besteko tenperatura · azken 5 urteak";
+    const y=new Date().getFullYear();
+    for(let i=4;i>=0;i--){values.push(13+(5-i)*0.4+(i%2));labels.push(y-i);}
+  }
+  drawLineChart(ctx,canvas,values,labels,title);
+}
+
+function drawLineChart(ctx,canvas,values,labels,title){
+  const padding=65,w=canvas.width-padding*2,h=canvas.height-padding*2;
+  const minVal=Math.floor(Math.min(...values)-3),maxVal=Math.ceil(Math.max(...values)+3);
+  ctx.strokeStyle="#cfe6f3";ctx.lineWidth=1;ctx.fillStyle="#163247";ctx.font="14px system-ui";
+  for(let i=0;i<=5;i++){
+    const y=padding+i*h/5;
+    const value=Math.round(maxVal-(i*(maxVal-minVal)/5));
+    ctx.beginPath();ctx.moveTo(padding,y);ctx.lineTo(canvas.width-padding,y);ctx.stroke();
+    ctx.fillText(value+" ºC",10,y+5);
+  }
+  ctx.strokeStyle="#0f6fa8";ctx.lineWidth=4;ctx.beginPath();
+  values.forEach((v,i)=>{
+    const x=padding+i*w/(values.length-1);
+    const y=padding+h-((v-minVal)/(maxVal-minVal))*h;
+    if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+  ctx.fillStyle="#0f6fa8";
+  values.forEach((v,i)=>{
+    const x=padding+i*w/(values.length-1);
+    const y=padding+h-((v-minVal)/(maxVal-minVal))*h;
+    ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();
+  });
+  ctx.fillStyle="#163247";ctx.font="18px system-ui";ctx.fillText(title,padding,32);
+  ctx.font="13px system-ui";
+  labels.forEach((label,i)=>{
+    if(values.length>15 && i%5!==0) return;
+    const x=padding+i*w/(values.length-1);
+    ctx.fillText(label,x-8,canvas.height-20);
+  });
+}
+
+function gaurDuela(dateString){
+  const d=new Date(dateString);
+  const station=document.getElementById("stationInput").value;
+  const years=[1,5,10];
+  let html="";
+  years.forEach(n=>{
+    const oldDate=new Date(d);
+    oldDate.setFullYear(d.getFullYear()-n);
+    const iso=isoDate(oldDate);
+    const data=getWeather(iso);
+    html+=`
+      <div class="info-card">
+        <h3>Duela ${n} urte</h3>
+        <p><strong>${formatDate(iso)}</strong></p>
+        <p>🌡️ Max: <strong>${data.max} ºC</strong></p>
+        <p>❄️ Min: <strong>${data.min} ºC</strong></p>
+        <p>🌧️ Euria: <strong>${data.rain} mm</strong></p>
+        <p class="small-note">${station} · ${sourceLabel(data)}</p>
+      </div>`;
+  });
+  document.getElementById("duelaEmaitza").innerHTML=html;
+}
+
+function beteUrteak(){
+  const now=new Date().getFullYear();
+  const ids=["carnivalYear","carnivalStartYear","carnivalEndYear","sanJoanStartYear","sanJoanEndYear"];
+  ids.forEach(id=>{
+    const sel=document.getElementById(id);
+    for(let y=now;y>=2000;y--){
+      const op=document.createElement("option");
+      op.value=y;
+      op.textContent=y;
+      sel.appendChild(op);
+    }
+  });
+  document.getElementById("carnivalStartYear").value=String(Math.max(2000, now-10));
+  document.getElementById("sanJoanStartYear").value=String(Math.max(2000, now-10));
+}
+
+function easterDate(year){
+  const a=year%19;
+  const b=Math.floor(year/100);
+  const c=year%100;
+  const d=Math.floor(b/4);
+  const e=b%4;
+  const f=Math.floor((b+8)/25);
+  const g=Math.floor((b-f+1)/3);
+  const h=(19*a+b-d-g+15)%30;
+  const i=Math.floor(c/4);
+  const k=c%4;
+  const l=(32+2*e+2*i-h-k)%7;
+  const m=Math.floor((a+11*h+22*l)/451);
+  const month=Math.floor((h+l-7*m+114)/31);
+  const day=((h+l-7*m+114)%31)+1;
+  return new Date(year,month-1,day);
+}
+
+function isoDate(d){
+  const y=d.getFullYear();
+  const m=String(d.getMonth()+1).padStart(2,"0");
+  const day=String(d.getDate()).padStart(2,"0");
+  return `${y}-${m}-${day}`;
+}
+
+function addDays(date,days){
+  const d=new Date(date);
+  d.setDate(d.getDate()+days);
+  return d;
+}
+
+function aldatuInauteriModua(modua){
+  inauteriModua=modua;
+  document.getElementById("inauteriBakarraBox").style.display=modua==="bakarra"?"flex":"none";
+  document.getElementById("inauteriTarteaBox").style.display=modua==="tartea"?"flex":"none";
+  document.getElementById("btnInauteriBakarra").classList.toggle("active",modua==="bakarra");
+  document.getElementById("btnInauteriTartea").classList.toggle("active",modua==="tartea");
+  document.getElementById("inauteriakEmaitza").innerHTML="";
+}
+
+function getInauteriEgunak(year){
+  const easter=easterDate(year);
+  const zaldunita=addDays(easter,-49);
+  return [
+    ["Ostegun Gizen",addDays(zaldunita,-3)],
+    ["Ostiral Mehe",addDays(zaldunita,-2)],
+    ["Zaldunita bezpera",addDays(zaldunita,-1)],
+    ["Zaldunita",zaldunita],
+    ["Astelenita",addDays(zaldunita,1)],
+    ["Asteartita",addDays(zaldunita,2)]
+  ];
+}
+
+function getInauteriSummary(year){
+  const egunak=getInauteriEgunak(year);
+  let hottest=null,coldest=null,rainiest=null,snow=false,totalRain=0;
+  egunak.forEach(([name,dateObj])=>{
+    const data=getWeather(isoDate(dateObj));
+    totalRain+=data.rain;
+    if(!hottest || data.max>hottest.data.max) hottest={name,data,dateObj};
+    if(!coldest || data.min<coldest.data.min) coldest={name,data,dateObj};
+    if(!rainiest || data.rain>rainiest.data.rain) rainiest={name,data,dateObj};
+    if(data.snow==="Bai") snow=true;
+  });
+  return {year,hottest,coldest,rainiest,snow,totalRain:Math.round(totalRain*10)/10};
+}
+
+function ikusiInauteriak(){
+  const year=parseInt(document.getElementById("carnivalYear").value);
+  const egunak=getInauteriEgunak(year);
+  const summary=getInauteriSummary(year);
+  let html=`<h3>${year}ko Tolosako Iñauteriak</h3>`;
+  html+="<div class='table-wrap'><table><tr><th>Eguna</th><th>Data</th><th>Max</th><th>Min</th><th>Euria</th><th>Elurra</th><th>Egun mota</th></tr>";
+  egunak.forEach(([name,dateObj])=>{
+    const date=isoDate(dateObj);
+    const data=getWeather(date);
+    html+=`<tr>
+      <td>${name}</td>
+      <td>${formatDate(date)}</td>
+      <td>${data.max} ºC</td>
+      <td>${data.min} ºC</td>
+      <td>${data.rain} mm</td>
+      <td>${data.snow}</td>
+      <td>${egunMota(data)}</td>
+    </tr>`;
+  });
+  html+="</table></div>";
+  html+=`
+    <div class="summary-box" style="margin-top:14px;">
+      <h3>📊 Iñauterien laburpena</h3>
+      <p>🌡️ Egun beroena: <strong>${summary.hottest.name}</strong> (${summary.hottest.data.max} ºC)</p>
+      <p>🥶 Egun hotzena: <strong>${summary.coldest.name}</strong> (${summary.coldest.data.min} ºC)</p>
+      <p>🌧️ Egun euritsuena: <strong>${summary.rainiest.name}</strong> (${summary.rainiest.data.rain} mm)</p>
+      <p>🌧️ Euri guztira: <strong>${summary.totalRain} mm</strong></p>
+      <p>❄️ Elurra: <strong>${summary.snow ? "Bai" : "Ez"}</strong></p>
+      <p><strong>${inauteriBalorazioa(summary.totalRain,summary.snow)}</strong></p>
+      <p class="small-note">2025eko datuak errealak dira; beste urteetan datuak simulatuak dira oraingoz. Hurrengo pausoa Google Sheets-eko datu errealak konektatzea da.</p>
+    </div>`;
+  document.getElementById("inauteriakEmaitza").innerHTML=html;
+}
+
+function ikusiInauteriTartea(){
+  let start=parseInt(document.getElementById("carnivalStartYear").value);
+  let end=parseInt(document.getElementById("carnivalEndYear").value);
+  if(start>end){const temp=start;start=end;end=temp;}
+  const summaries=[];
+  for(let y=start;y<=end;y++) summaries.push(getInauteriSummary(y));
+
+  let html=`<h3>${start}–${end} arteko Iñauteriak</h3>`;
+  html+="<div class='table-wrap'><table><tr><th>Urtea</th><th>Zaldunita</th><th>Max handiena</th><th>Min txikiena</th><th>Euri guztira</th><th>Egun euritsuena</th><th>Elurra</th><th>Balorazioa</th></tr>";
+  summaries.forEach(s=>{
+    const zaldunita=isoDate(getInauteriEgunak(s.year)[3][1]);
+    html+=`<tr>
+      <td>${s.year}</td>
+      <td>${formatDate(zaldunita)}</td>
+      <td>${s.hottest.data.max} ºC (${s.hottest.name})</td>
+      <td>${s.coldest.data.min} ºC (${s.coldest.name})</td>
+      <td>${s.totalRain} mm</td>
+      <td>${s.rainiest.name} (${s.rainiest.data.rain} mm)</td>
+      <td>${s.snow ? "Bai" : "Ez"}</td>
+      <td>${inauteriBalorazioLaburra(s.totalRain,s.snow)}</td>
+    </tr>`;
+  });
+  html+="</table></div>";
+
+  const warmest=summaries.reduce((a,b)=>b.hottest.data.max>a.hottest.data.max?b:a);
+  const coldest=summaries.reduce((a,b)=>b.coldest.data.min<a.coldest.data.min?b:a);
+  const wettest=summaries.reduce((a,b)=>b.totalRain>a.totalRain?b:a);
+  const driest=summaries.reduce((a,b)=>b.totalRain<a.totalRain?b:a);
+  const snowy=summaries.filter(s=>s.snow).map(s=>s.year);
+
+  html+=`
+    <div class="summary-box" style="margin-top:14px;">
+      <h3>📊 Ikuspegi orokorra</h3>
+      <p>🎭 Iñauteririk beroenak: <strong>${warmest.year}</strong> (${warmest.hottest.data.max} ºC)</p>
+      <p>🥶 Iñauteririk hotzenak: <strong>${coldest.year}</strong> (${coldest.coldest.data.min} ºC)</p>
+      <p>🌧️ Iñauteririk euritsuenak: <strong>${wettest.year}</strong> (${wettest.totalRain} mm)</p>
+      <p>☀️ Iñauteririk lehorrenak: <strong>${driest.year}</strong> (${driest.totalRain} mm)</p>
+      <p>❄️ Elurra izan duten urteak: <strong>${snowy.length ? snowy.join(", ") : "ez dago"}</strong></p>
+      <p class="small-note">2025eko datuak errealak dira; beste urteetan datuak simulatuak dira oraingoz.</p>
+    </div>`;
+  document.getElementById("inauteriakEmaitza").innerHTML=html;
+}
+
+function ikusiSanJoanTartea(){
+  let start=parseInt(document.getElementById("sanJoanStartYear").value);
+  let end=parseInt(document.getElementById("sanJoanEndYear").value);
+  if(start>end){const temp=start;start=end;end=temp;}
+
+  const rows=[];
+  for(let year=start;year<=end;year++){
+    const date=`${year}-06-24`;
+    const data=getWeather(date);
+    rows.push({year,date,data});
+  }
+
+  let html=`<h3>${start}–${end} arteko San Joanak</h3>`;
+  html+="<div class='table-wrap'><table><tr><th>Urtea</th><th>Data</th><th>Max</th><th>Min</th><th>Euria</th><th>Hezetasuna</th><th>Elurra</th><th>Balorazioa</th></tr>";
+  rows.forEach(r=>{
+    html+=`<tr>
+      <td>${r.year}</td>
+      <td>${formatDate(r.date)}</td>
+      <td>${r.data.max} ºC</td>
+      <td>${r.data.min} ºC</td>
+      <td>${r.data.rain} mm</td>
+      <td>${r.data.humidity} %</td>
+      <td>${r.data.snow}</td>
+      <td>${sanJoanBalorazioLaburra(r.data)}</td>
+    </tr>`;
+  });
+  html+="</table></div>";
+
+  const hottest=rows.reduce((a,b)=>b.data.max>a.data.max?b:a);
+  const coldest=rows.reduce((a,b)=>b.data.min<a.data.min?b:a);
+  const wettest=rows.reduce((a,b)=>b.data.rain>a.data.rain?b:a);
+  const driest=rows.reduce((a,b)=>b.data.rain<a.data.rain?b:a);
+
+  html+=`
+    <div class="summary-box" style="margin-top:14px;">
+      <h3>📊 San Joanen laburpena</h3>
+      <p>🔥 San Joan beroena: <strong>${hottest.year}</strong> (${hottest.data.max} ºC)</p>
+      <p>🥶 San Joan hotzena: <strong>${coldest.year}</strong> (${coldest.data.min} ºC)</p>
+      <p>🌧️ San Joan euritsuena: <strong>${wettest.year}</strong> (${wettest.data.rain} mm)</p>
+      <p>☀️ San Joan lehorrena: <strong>${driest.year}</strong> (${driest.data.rain} mm)</p>
+      <p class="small-note">2025eko datuak errealak dira; beste urteetan datuak simulatuak dira oraingoz. Gero Google Sheets/Euskalmet datuekin ordezkatuko dira.</p>
+    </div>`;
+  document.getElementById("sanJoanEmaitza").innerHTML=html;
+}
+
+function sanJoanBalorazioLaburra(data){
+  if(data.rain===0 && data.max>=20) return "🔥 Oso ona";
+  if(data.rain===0) return "☀️ Lehorra";
+  if(data.rain<10) return "⛅ Nahiko ona";
+  return "🌧️ Euritsua";
+}
+
+function inauteriBalorazioLaburra(totalRain,snow){
+  if(snow) return "❄️ Elurrarekin";
+  if(totalRain===0) return "☀️ Lehorra";
+  if(totalRain<15) return "⛅ Nahiko ona";
+  if(totalRain<45) return "🌧️ Euritsua";
+  return "🌧️ Oso euritsua";
+}
+
+function inauteriBalorazioa(totalRain,snow){
+  if(snow) return "❄️ Iñauteri hotzak eta elurrarekin.";
+  if(totalRain===0) return "☀️ Iñauteri lehorrak eta oso egokiak kaleko giroarentzat.";
+  if(totalRain<15) return "⛅ Iñauteri nahiko onak, euri gutxirekin.";
+  if(totalRain<45) return "🌧️ Iñauteri euritsuak izan ziren.";
+  return "🌧️🌧️ Iñauteri oso euritsuak izan ziren.";
+}
+
+beteUrteak();
+bilatu();
+loadWeatherData();
+</script>
+</body>
+</html>
