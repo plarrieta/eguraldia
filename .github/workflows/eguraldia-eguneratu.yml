@@ -1,0 +1,41 @@
+name: Euskalmet datuak eguneratu
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: euskalmet-datuak
+  cancel-in-progress: false
+
+jobs:
+  eguneratu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Biltegia jaitsi
+        uses: actions/checkout@v4
+
+      - name: Python prestatu
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Euskalmet datuak sortu
+        run: python scripts/euskalmet_datuak_sortu.py
+
+      - name: Aldaketak GitHubera igo
+        shell: bash
+        run: |
+          if git diff --quiet -- data/datuak.json data/anomaliak.json; then
+            echo "Ez dago aldaketarik."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/datuak.json data/anomaliak.json
+          git commit -m "Euskalmet datuak automatikoki eguneratu"
+          git push
