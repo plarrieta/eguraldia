@@ -53,9 +53,9 @@ th{background:#eef8ff}
 <header>
   <div style="font-size:0.95rem;opacity:.9;">📍 TOLOSA / ALEGIA</div>
   <h1>🌦️ Tolosako Eguraldi Historikoa</h1>
-  <p>Eguraldi historikoaren kontsulta-sistema · v0.11</p>
+  <p>Eguraldi historikoaren kontsulta-sistema · v0.12</p>
   <div id="dataStatus" class="source-badge">🟡 Datuak kargatzen...</div>
-  <div class="status-pill">🟢 Euskalmeteko datu errealak soilik: 2023–2025</div>
+  <div class="status-pill">🟢 Euskalmeteko datu errealak soilik: 2012–2026</div>
 </header>
 
 <main>
@@ -89,6 +89,7 @@ th{background:#eef8ff}
     <button class="small-btn" onclick="grafikoMota='egunak'; marraztuGrafikoa()">30 egun</button>
     <button class="small-btn" onclick="grafikoMota='hilabeteak'; marraztuGrafikoa()">12 hilabete</button>
     <button class="small-btn" onclick="grafikoMota='urteak'; marraztuGrafikoa()">5 urte</button>
+    <button class="small-btn" onclick="grafikoMota='historikoa'; marraztuGrafikoa()">Historikoa</button>
   </div>
   <canvas id="chart" width="1200" height="360"></canvas>
 </section>
@@ -117,7 +118,7 @@ th{background:#eef8ff}
 
 <section class="card panel" id="grafikoak">
   <h2>📈 Grafikoen azalpena</h2>
-  <p>30 eguneko, 12 hilabeteko edo 5 urteko bilakaera ikus daiteke. Datu historiko errealak 2023–2025 tarterako daude erabilgarri.</p>
+  <p>30 eguneko, 12 hilabeteko, aurreko 5 urteko edo serie historiko osoko bilakaera ikus daiteke. Datu historiko errealak 2012–2026 tarterako daude erabilgarri.</p>
 </section>
 
 <section class="card panel" id="errekorrak">
@@ -125,7 +126,7 @@ th{background:#eef8ff}
   <div id="errekorrakEmaitza" class="table-wrap">
     <p>Datuak kargatzen...</p>
   </div>
-  <p><small>Errekorrak 2023–2025 datu errealetatik automatikoki kalkulatzen dira.</small></p>
+  <p><small>Errekorrak 2012–2026 datu errealetatik automatikoki kalkulatzen dira.</small></p>
 </section>
 
 <section class="card panel" id="inauteriak">
@@ -272,7 +273,7 @@ function bilatu(){
     document.getElementById("rain").textContent="-- mm";
     document.getElementById("humidity").textContent="-- %";
     document.getElementById("snow").textContent="--";
-    document.getElementById("laburpena").innerHTML="<div class='warning-box'><strong>Ez dago daturik aukeratutako egun honetarako.</strong><br>Une honetan 2023–2025 arteko datu errealak daude eskuragarri.</div>";
+    document.getElementById("laburpena").innerHTML="<div class='warning-box'><strong>Ez dago daturik aukeratutako egun honetarako.</strong><br>Une honetan 2012–2026 arteko datu errealak daude eskuragarri.</div>";
     gaurDuela(date);
     marraztuGrafikoa();
     return;
@@ -323,35 +324,71 @@ function marraztuGrafikoa(){
   const canvas=document.getElementById("chart");
   const ctx=canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height);
+
   const selected=input.value;
   const selectedDate=new Date(selected+"T00:00:00");
+  const selectedYear=selectedDate.getFullYear();
   let points=[],title="";
+
   if(grafikoMota==="egunak"){
     title="Tenperatura maximoak · aurreko 30 egun errealak";
     for(let i=29;i>=0;i--){
-      const d=new Date(selectedDate); d.setDate(d.getDate()-i);
-      const iso=isoDate(d); const data=getRealWeather(iso);
+      const d=new Date(selectedDate);
+      d.setDate(d.getDate()-i);
+      const data=getRealWeather(isoDate(d));
       if(data) points.push({label:String(d.getDate()),value:data.max});
     }
   }
+
   if(grafikoMota==="hilabeteak"){
-    title="Hilabeteko batez besteko maximoak · 2023–2025";
+    title="Hilabeteko batez besteko maximo historikoak · 2012–2026";
     for(let month=0;month<12;month++){
-      const values=Object.entries(weatherByDate).filter(([date])=>new Date(date+"T00:00:00").getMonth()===month).map(([,data])=>data.max);
-      if(values.length) points.push({label:String(month+1),value:values.reduce((a,b)=>a+b,0)/values.length});
+      const values=Object.entries(weatherByDate)
+        .filter(([date])=>new Date(date+"T00:00:00").getMonth()===month)
+        .map(([,data])=>data.max);
+      if(values.length) points.push({
+        label:String(month+1),
+        value:values.reduce((a,b)=>a+b,0)/values.length
+      });
     }
   }
+
   if(grafikoMota==="urteak"){
-    title="Urteko batez besteko tenperatura maximoa";
-    [2023,2024,2025].forEach(year=>{
-      const values=Object.entries(weatherByDate).filter(([date])=>date.startsWith(String(year))).map(([,data])=>data.max);
-      if(values.length) points.push({label:String(year),value:values.reduce((a,b)=>a+b,0)/values.length});
+    const startYear=selectedYear-5;
+    const endYear=selectedYear-1;
+    title=`Urteko batez besteko maximoa · ${startYear}–${endYear}`;
+    for(let year=startYear;year<=endYear;year++){
+      const values=Object.entries(weatherByDate)
+        .filter(([date])=>date.startsWith(String(year)))
+        .map(([,data])=>data.max);
+      if(values.length) points.push({
+        label:String(year),
+        value:values.reduce((a,b)=>a+b,0)/values.length
+      });
+    }
+  }
+
+  if(grafikoMota==="historikoa"){
+    const years=[...new Set(Object.keys(weatherByDate).map(date=>Number(date.slice(0,4))))].sort((a,b)=>a-b);
+    title=`Urteko batez besteko maximo historikoa · ${years[0]}–${years[years.length-1]}`;
+    years.forEach(year=>{
+      const values=Object.entries(weatherByDate)
+        .filter(([date])=>date.startsWith(String(year)))
+        .map(([,data])=>data.max);
+      if(values.length) points.push({
+        label:String(year),
+        value:values.reduce((a,b)=>a+b,0)/values.length
+      });
     });
   }
+
   if(!points.length){
-    ctx.fillStyle="#163247"; ctx.font="18px system-ui";
-    ctx.fillText("Ez dago nahikoa datu errealik grafikoa marrazteko.",40,60); return;
+    ctx.fillStyle="#163247";
+    ctx.font="18px system-ui";
+    ctx.fillText("Ez dago nahikoa datu errealik grafikoa marrazteko.",40,60);
+    return;
   }
+
   drawLineChart(ctx,canvas,points.map(p=>p.value),points.map(p=>p.label),title);
 }
 
@@ -405,7 +442,8 @@ function gaurDuela(dateString){
 }
 
 function beteUrteak(){
-  const availableYears=[2025,2024,2023];
+  const availableYears=[];
+  for(let y=2026;y>=2012;y--) availableYears.push(y);
   const ids=["carnivalYear","carnivalStartYear","carnivalEndYear","sanJoanStartYear","sanJoanEndYear"];
   ids.forEach(id=>{
     const sel=document.getElementById(id);
@@ -417,11 +455,11 @@ function beteUrteak(){
       sel.appendChild(op);
     });
   });
-  document.getElementById("carnivalYear").value="2025";
-  document.getElementById("carnivalStartYear").value="2023";
-  document.getElementById("carnivalEndYear").value="2025";
-  document.getElementById("sanJoanStartYear").value="2023";
-  document.getElementById("sanJoanEndYear").value="2025";
+  document.getElementById("carnivalYear").value="2026";
+  document.getElementById("carnivalStartYear").value="2012";
+  document.getElementById("carnivalEndYear").value="2026";
+  document.getElementById("sanJoanStartYear").value="2012";
+  document.getElementById("sanJoanEndYear").value="2026";
 }
 
 function easterDate(year){
