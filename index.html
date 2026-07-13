@@ -53,9 +53,9 @@ th{background:#eef8ff}
 <header>
   <div style="font-size:0.95rem;opacity:.9;">📍 TOLOSA / ALEGIA</div>
   <h1>🌦️ Tolosako Eguraldi Historikoa</h1>
-  <p>Eguraldi historikoaren kontsulta-sistema · v0.16</p>
+  <p>Eguraldi historikoaren kontsulta-sistema · v0.17</p>
   <div id="dataStatus" class="source-badge">🟡 Datuak kargatzen...</div>
-  <div class="status-pill">🟢 Euskalmeteko datu errealak soilik: 2012–2026</div>
+  <div class="status-pill">🟢 Euskalmeteko datu errealak · eguneratze automatikoa</div>
 </header>
 
 <main>
@@ -113,7 +113,7 @@ th{background:#eef8ff}
 <section class="card panel" id="duela">
   <h2>⏳ Gaur duela...</h2>
   <div id="duelaEmaitza" class="info-grid"></div>
-  <p class="small-note">2023, 2024 eta 2025eko datuak Google Sheets/Euskalmet iturritik irakurtzen dira.</p>
+  <p class="small-note">2023, 2024 eta 2025eko datuak Euskalmet / Euskadi Open Data iturritik irakurtzen dira.</p>
 </section>
 
 <section class="card panel" id="grafikoak">
@@ -170,7 +170,7 @@ input.value=new Date().toISOString().split("T")[0];
 let grafikoMota="egunak";
 let inauteriModua="bakarra";
 
-const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vTchh1usYMkx873FYUCShGI8x_srqhUTTKKuUL6l8OsIunySA-OIzLsf8_sLMXoYzBCRWnsbGprfbGH/pub?gid=1707343386&single=true&output=csv";
+const DATA_URL="./data/datuak.json";
 let weatherByDate={};
 let realDataLoaded=false;
 
@@ -184,63 +184,45 @@ function parseNumber(value){
   return Number.isFinite(n)?n:null;
 }
 
-function parseCSV(text){
-  const rows=[];
-  let row=[],cell="",inQuotes=false;
-  for(let i=0;i<text.length;i++){
-    const ch=text[i], next=text[i+1];
-    if(ch==='"'){
-      if(inQuotes && next==='"'){ cell+='"'; i++; }
-      else inQuotes=!inQuotes;
-    }else if(ch===',' && !inQuotes){ row.push(cell); cell=""; }
-    else if((ch==='\n' || ch==='\r') && !inQuotes){
-      if(ch==='\r' && next==='\n') i++;
-      row.push(cell); cell="";
-      if(row.some(v=>String(v).trim()!=="")) rows.push(row);
-      row=[];
-    }else cell+=ch;
-  }
-  if(cell || row.length){ row.push(cell); rows.push(row); }
-  return rows;
-}
-
 async function loadWeatherData(){
   const status=document.getElementById("dataStatus");
   try{
-    const response=await fetch(CSV_URL);
+    const response=await fetch(DATA_URL,{cache:"no-store"});
     if(!response.ok) throw new Error("HTTP "+response.status);
-    const text=await response.text();
-    const rows=parseCSV(text);
-    const headers=rows.shift().map(h=>h.trim().toUpperCase());
-    const idx=name=>headers.indexOf(name);
-    const iData=idx("DATA"), iMax=idx("MAX"), iMin=idx("MIN"), iRain=idx("EURIA"), iHum=idx("HEZETASUNA"), iStation=idx("ESTAZIOA"), iCode=idx("KODEA");
+    const payload=await response.json();
+    const rows=Array.isArray(payload) ? payload : payload.datuak;
+    if(!Array.isArray(rows)) throw new Error("JSON formatu baliogabea");
 
+    weatherByDate={};
     rows.forEach(r=>{
-      const date=(r[iData]||"").trim();
+      const date=String(r.data||"").trim();
       if(!/^\d{4}-\d{2}-\d{2}$/.test(date)) return;
-      const max=parseNumber(r[iMax]);
-      const min=parseNumber(r[iMin]);
-      const rain=parseNumber(r[iRain]);
-      const humidity=parseNumber(r[iHum]);
-      if(max===null || min===null) return;
-      const finalRain=rain ?? 0;
-      const finalHumidity=humidity;
+
+      const max=Number(r.max);
+      const min=Number(r.min);
+      const rain=r.euria==null ? 0 : Number(r.euria);
+      const humidity=r.hezetasuna==null ? null : Number(r.hezetasuna);
+      if(!Number.isFinite(max) || !Number.isFinite(min)) return;
+
       weatherByDate[date]={
         max,
         min,
-        rain:finalRain,
-        humidity:finalHumidity,
-        station:(r[iStation]||"Alegia").trim(),
-        code:(r[iCode]||"C0E9").trim(),
-        source:"erreala"
+        rain:Number.isFinite(rain) ? rain : 0,
+        humidity:Number.isFinite(humidity) ? humidity : null,
+        station:r.estazioa||"Alegia",
+        code:r.kodea||"C0E9",
+        source:"Euskalmet"
       };
     });
+
     realDataLoaded=true;
-    status.textContent=`🟢 Google Sheets/Euskalmet datuak kargatuta (${Object.keys(weatherByDate).length} egun)`;
+    const meta=payload.meta||{};
+    const azkena=meta.azken_data ? ` · azken data: ${formatDate(meta.azken_data)}` : "";
+    status.textContent=`🟢 Euskalmet datuak automatikoki kargatuta (${Object.keys(weatherByDate).length} egun)${azkena}`;
     kalkulatuErrekorrak();
   }catch(err){
     console.error(err);
-    status.textContent="🔴 Ezin izan dira Google Sheets datuak kargatu";
+    status.textContent="🔴 Ezin izan da ./data/datuak.json kargatu";
   }
   bilatu();
 }
