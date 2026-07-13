@@ -53,7 +53,7 @@ th{background:#eef8ff}
 <header>
   <div style="font-size:0.95rem;opacity:.9;">📍 TOLOSA / ALEGIA</div>
   <h1>🌦️ Tolosako Eguraldi Historikoa</h1>
-  <p>Eguraldi historikoaren kontsulta-sistema · v0.10</p>
+  <p>Eguraldi historikoaren kontsulta-sistema · v0.11</p>
   <div id="dataStatus" class="source-badge">🟡 Datuak kargatzen...</div>
   <div class="status-pill">🟢 Euskalmeteko datu errealak soilik: 2023–2025</div>
 </header>
@@ -281,7 +281,7 @@ function bilatu(){
   document.getElementById("maxTemp").textContent=data.max+" ºC";
   document.getElementById("minTemp").textContent=data.min+" ºC";
   document.getElementById("rain").textContent=data.rain+" mm";
-  document.getElementById("humidity").textContent=(data.humidity ?? "--")+" %";
+  document.getElementById("humidity").textContent=humidityLabel(data.humidity);
   document.getElementById("snow").textContent=data.snow;
   document.getElementById("laburpena").innerHTML=
     "<h3>"+formatDate(date)+"</h3>"+
@@ -289,7 +289,7 @@ function bilatu(){
     "<span class='badge'>❄️ Min: "+data.min+" ºC</span>"+
     "<span class='badge'>📊 Batez bestekoa: "+avg+" ºC</span>"+
     "<span class='badge'>🌧️ Euria: "+data.rain+" mm</span>"+
-    "<span class='badge'>💧 Hezetasuna: "+(data.humidity ?? "--")+" %</span>"+
+    "<span class='badge'>💧 Hezetasuna: "+humidityLabel(data.humidity)+"</span>"+
     "<span class='badge'>❄️ Elurra: "+data.snow+"</span>"+
     "<span class='badge'>🟢 datu erreala</span>"+
     "<p><strong>"+egunMota(data)+"</strong></p>";
@@ -605,6 +605,12 @@ function inauteriBalorazioa(totalRain,snow){
   return "🌧️🌧️ Iñauteri oso euritsuak izan ziren.";
 }
 
+
+function humidityLabel(value){
+  if(value===null || value===undefined) return "—";
+  return value>100 ? `${value} % ⚠️ Datu anomaloa` : `${value} %`;
+}
+
 function kalkulatuErrekorrak(){
   const entries=Object.entries(weatherByDate);
   if(!entries.length) return;
@@ -620,7 +626,7 @@ function kalkulatuErrekorrak(){
       <tr><td>🔥 Egun beroena</td><td><strong>${hottest[1].max} °C</strong></td><td>${formatDate(hottest[0])}</td><td>${hottest[1].station}</td></tr>
       <tr><td>🥶 Egun hotzena</td><td><strong>${coldest[1].min} °C</strong></td><td>${formatDate(coldest[0])}</td><td>${coldest[1].station}</td></tr>
       <tr><td>🌧️ Egun euritsuena</td><td><strong>${wettest[1].rain} mm</strong></td><td>${formatDate(wettest[0])}</td><td>${wettest[1].station}</td></tr>
-      <tr><td>💧 Hezetasun handiena</td><td><strong>${mostHumid[1].humidity} %</strong></td><td>${formatDate(mostHumid[0])}</td><td>${mostHumid[1].station}</td></tr>
+      <tr><td>💧 Hezetasun handiena</td><td><strong>${humidityLabel(mostHumid[1].humidity)}</strong></td><td>${formatDate(mostHumid[0])}</td><td>${mostHumid[1].station}</td></tr>
     </table>`;
 }
 
