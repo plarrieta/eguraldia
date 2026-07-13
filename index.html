@@ -53,7 +53,7 @@ th{background:#eef8ff}
 <header>
   <div style="font-size:0.95rem;opacity:.9;">📍 TOLOSA / ALEGIA</div>
   <h1>🌦️ Tolosako Eguraldi Historikoa</h1>
-  <p>Eguraldi historikoaren kontsulta-sistema · v0.12</p>
+  <p>Eguraldi historikoaren kontsulta-sistema · v0.13</p>
   <div id="dataStatus" class="source-badge">🟡 Datuak kargatzen...</div>
   <div class="status-pill">🟢 Euskalmeteko datu errealak soilik: 2012–2026</div>
 </header>
@@ -92,6 +92,7 @@ th{background:#eef8ff}
     <button class="small-btn" onclick="grafikoMota='historikoa'; marraztuGrafikoa()">Historikoa</button>
   </div>
   <canvas id="chart" width="1200" height="360"></canvas>
+  <p id="chartNote" class="small-note" style="margin:8px 6px 0;"></p>
 </section>
 
 <section class="card">
@@ -325,6 +326,9 @@ function marraztuGrafikoa(){
   const ctx=canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
+  const note=document.getElementById("chartNote");
+  note.textContent="";
+
   const selected=input.value;
   const selectedDate=new Date(selected+"T00:00:00");
   const selectedYear=selectedDate.getFullYear();
@@ -369,17 +373,34 @@ function marraztuGrafikoa(){
   }
 
   if(grafikoMota==="historikoa"){
-    const years=[...new Set(Object.keys(weatherByDate).map(date=>Number(date.slice(0,4))))].sort((a,b)=>a-b);
-    title=`Urteko batez besteko maximo historikoa · ${years[0]}–${years[years.length-1]}`;
+    const years=[...new Set(
+      Object.keys(weatherByDate).map(date=>Number(date.slice(0,4)))
+    )].sort((a,b)=>a-b);
+
+    const firstYear=years[0];
+    const lastYear=years[years.length-1];
+    title=`Urteko batez besteko maximo historikoa · ${firstYear}–${lastYear}*`;
+
     years.forEach(year=>{
       const values=Object.entries(weatherByDate)
         .filter(([date])=>date.startsWith(String(year)))
         .map(([,data])=>data.max);
-      if(values.length) points.push({
-        label:String(year),
-        value:values.reduce((a,b)=>a+b,0)/values.length
-      });
+
+      if(values.length){
+        points.push({
+          label:year===lastYear ? `${year}*` : String(year),
+          value:values.reduce((a,b)=>a+b,0)/values.length
+        });
+      }
     });
+
+    const lastDates=Object.keys(weatherByDate)
+      .filter(date=>date.startsWith(String(lastYear)))
+      .sort();
+
+    if(lastDates.length){
+      note.textContent=`* ${lastYear}ko datuak ${formatDate(lastDates[lastDates.length-1])} artekoak dira; urte partziala da.`;
+    }
   }
 
   if(!points.length){
@@ -418,10 +439,13 @@ function drawLineChart(ctx,canvas,values,labels,title){
   ctx.fillStyle="#163247";ctx.font="18px system-ui";ctx.fillText(title,padding,32);
   ctx.font="13px system-ui";
   labels.forEach((label,i)=>{
-    if(values.length>15 && i%5!==0) return;
+    const isLast=i===labels.length-1;
+    if(values.length>15 && i%5!==0 && !isLast) return;
     const x=padding+i*w/(values.length-1);
-    ctx.fillText(label,x-8,canvas.height-20);
+    ctx.textAlign=isLast ? "right" : (i===0 ? "left" : "center");
+    ctx.fillText(label,x,canvas.height-20);
   });
+  ctx.textAlign="left";
 }
 
 function gaurDuela(dateString){
