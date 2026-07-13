@@ -53,9 +53,9 @@ th{background:#eef8ff}
 <header>
   <div style="font-size:0.95rem;opacity:.9;">📍 TOLOSA / ALEGIA</div>
   <h1>🌦️ Tolosako Eguraldi Historikoa</h1>
-  <p>Eguraldi historikoaren kontsulta-sistema · v0.9</p>
+  <p>Eguraldi historikoaren kontsulta-sistema · v0.10</p>
   <div id="dataStatus" class="source-badge">🟡 Datuak kargatzen...</div>
-  <div class="status-pill">🟢 Euskalmeteko datu errealak: 2023–2025</div>
+  <div class="status-pill">🟢 Euskalmeteko datu errealak soilik: 2023–2025</div>
 </header>
 
 <main>
@@ -173,16 +173,6 @@ const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vR8lI14F_2vT5A_UY
 let weatherByDate={};
 let realDataLoaded=false;
 
-function fakeWeather(dateString){
-  const d=new Date(dateString);
-  const seed=d.getDate()+d.getMonth()*11+d.getFullYear()*3;
-  const max=14+(seed%20);
-  const min=max-(5+seed%9);
-  const rain=(seed%4===0)?(seed%42):0;
-  const humidity=40+(seed%55);
-  const snow=(min<=1 && rain>0) ? "Bai" : "Ez";
-  return{max,min,rain,humidity,snow,source:"simulatua"};
-}
 
 function parseNumber(value){
   if(value===undefined || value===null) return null;
@@ -231,17 +221,15 @@ async function loadWeatherData(){
       const min=parseNumber(r[iMin]);
       const rain=parseNumber(r[iRain]);
       const humidity=parseNumber(r[iHum]);
-      const fallback=fakeWeather(date);
-      const finalMax=max ?? fallback.max;
-      const finalMin=min ?? fallback.min;
+      if(max===null || min===null) return;
       const finalRain=rain ?? 0;
-      const finalHumidity=humidity ?? fallback.humidity;
+      const finalHumidity=humidity;
       weatherByDate[date]={
-        max:finalMax,
-        min:finalMin,
+        max,
+        min,
         rain:finalRain,
         humidity:finalHumidity,
-        snow:(finalMin<=1 && finalRain>0)?"Bai":"Ez",
+        snow:(min<=1 && finalRain>0)?"Bai":"Ez",
         station:(r[iStation]||"Alegia").trim(),
         code:(r[iCode]||"C0E9").trim(),
         source:"erreala"
@@ -252,13 +240,13 @@ async function loadWeatherData(){
     kalkulatuErrekorrak();
   }catch(err){
     console.error(err);
-    status.textContent="🔴 Ezin izan dira Google Sheets datuak kargatu; datu simulatuak erabiliko dira";
+    status.textContent="🔴 Ezin izan dira Google Sheets datuak kargatu";
   }
   bilatu();
 }
 
 function getWeather(dateString){
-  return weatherByDate[dateString] || fakeWeather(dateString);
+  return weatherByDate[dateString] || null;
 }
 
 function getRealWeather(dateString){
@@ -270,33 +258,41 @@ function formatValue(value, unit){
 }
 
 function sourceLabel(data){
-  return data.source==="erreala" ? "🟢 datu erreala" : "🟡 datu simulatua";
+  return data ? "🟢 datu erreala" : "⚪ daturik ez";
 }
 
 function bilatu(){
   const date=input.value;
   const station=document.getElementById("stationInput").value;
   const data=getWeather(date);
-  const avg=((data.max+data.min)/2).toFixed(1);
-
   document.getElementById("egunarenIzenburua").textContent=station+" · "+formatDate(date);
+  if(!data){
+    document.getElementById("maxTemp").textContent="-- ºC";
+    document.getElementById("minTemp").textContent="-- ºC";
+    document.getElementById("rain").textContent="-- mm";
+    document.getElementById("humidity").textContent="-- %";
+    document.getElementById("snow").textContent="--";
+    document.getElementById("laburpena").innerHTML="<div class='warning-box'><strong>Ez dago daturik aukeratutako egun honetarako.</strong><br>Une honetan 2023–2025 arteko datu errealak daude eskuragarri.</div>";
+    gaurDuela(date);
+    marraztuGrafikoa();
+    return;
+  }
+  const avg=((data.max+data.min)/2).toFixed(1);
   document.getElementById("maxTemp").textContent=data.max+" ºC";
   document.getElementById("minTemp").textContent=data.min+" ºC";
   document.getElementById("rain").textContent=data.rain+" mm";
-  document.getElementById("humidity").textContent=data.humidity+" %";
+  document.getElementById("humidity").textContent=(data.humidity ?? "--")+" %";
   document.getElementById("snow").textContent=data.snow;
-
   document.getElementById("laburpena").innerHTML=
     "<h3>"+formatDate(date)+"</h3>"+
     "<span class='badge'>🌡️ Max: "+data.max+" ºC</span>"+
     "<span class='badge'>❄️ Min: "+data.min+" ºC</span>"+
     "<span class='badge'>📊 Batez bestekoa: "+avg+" ºC</span>"+
     "<span class='badge'>🌧️ Euria: "+data.rain+" mm</span>"+
-    "<span class='badge'>💧 Hezetasuna: "+data.humidity+" %</span>"+
+    "<span class='badge'>💧 Hezetasuna: "+(data.humidity ?? "--")+" %</span>"+
     "<span class='badge'>❄️ Elurra: "+data.snow+"</span>"+
-    "<span class='badge'>"+sourceLabel(data)+"</span>"+
+    "<span class='badge'>🟢 datu erreala</span>"+
     "<p><strong>"+egunMota(data)+"</strong></p>";
-
   gaurDuela(date);
   marraztuGrafikoa();
 }
@@ -327,22 +323,36 @@ function marraztuGrafikoa(){
   const canvas=document.getElementById("chart");
   const ctx=canvas.getContext("2d");
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  let values=[],title="",labels=[];
-
+  const selected=input.value;
+  const selectedDate=new Date(selected+"T00:00:00");
+  let points=[],title="";
   if(grafikoMota==="egunak"){
-    title="Tenperatura maximoak · azken 30 egunak";
-    for(let i=1;i<=30;i++){values.push(14+Math.sin(i/4)*7+(i%5));labels.push(i);}
+    title="Tenperatura maximoak · aurreko 30 egun errealak";
+    for(let i=29;i>=0;i--){
+      const d=new Date(selectedDate); d.setDate(d.getDate()-i);
+      const iso=isoDate(d); const data=getRealWeather(iso);
+      if(data) points.push({label:String(d.getDate()),value:data.max});
+    }
   }
   if(grafikoMota==="hilabeteak"){
-    title="Tenperatura maximoen batez bestekoa · 12 hilabete";
-    for(let i=1;i<=12;i++){values.push(10+Math.sin(i/2)*9+(i%3));labels.push(i);}
+    title="Hilabeteko batez besteko maximoak · 2023–2025";
+    for(let month=0;month<12;month++){
+      const values=Object.entries(weatherByDate).filter(([date])=>new Date(date+"T00:00:00").getMonth()===month).map(([,data])=>data.max);
+      if(values.length) points.push({label:String(month+1),value:values.reduce((a,b)=>a+b,0)/values.length});
+    }
   }
   if(grafikoMota==="urteak"){
-    title="Urteko batez besteko tenperatura · azken 5 urteak";
-    const y=new Date().getFullYear();
-    for(let i=4;i>=0;i--){values.push(13+(5-i)*0.4+(i%2));labels.push(y-i);}
+    title="Urteko batez besteko tenperatura maximoa";
+    [2023,2024,2025].forEach(year=>{
+      const values=Object.entries(weatherByDate).filter(([date])=>date.startsWith(String(year))).map(([,data])=>data.max);
+      if(values.length) points.push({label:String(year),value:values.reduce((a,b)=>a+b,0)/values.length});
+    });
   }
-  drawLineChart(ctx,canvas,values,labels,title);
+  if(!points.length){
+    ctx.fillStyle="#163247"; ctx.font="18px system-ui";
+    ctx.fillText("Ez dago nahikoa datu errealik grafikoa marrazteko.",40,60); return;
+  }
+  drawLineChart(ctx,canvas,points.map(p=>p.value),points.map(p=>p.label),title);
 }
 
 function drawLineChart(ctx,canvas,values,labels,title){
@@ -378,24 +388,18 @@ function drawLineChart(ctx,canvas,values,labels,title){
 }
 
 function gaurDuela(dateString){
-  const d=new Date(dateString);
+  const d=new Date(dateString+"T00:00:00");
   const station=document.getElementById("stationInput").value;
   const years=[1,5,10];
   let html="";
   years.forEach(n=>{
-    const oldDate=new Date(d);
-    oldDate.setFullYear(d.getFullYear()-n);
-    const iso=isoDate(oldDate);
-    const data=getWeather(iso);
-    html+=`
-      <div class="info-card">
-        <h3>Duela ${n} urte</h3>
-        <p><strong>${formatDate(iso)}</strong></p>
-        <p>🌡️ Max: <strong>${data.max} ºC</strong></p>
-        <p>❄️ Min: <strong>${data.min} ºC</strong></p>
-        <p>🌧️ Euria: <strong>${data.rain} mm</strong></p>
-        <p class="small-note">${station} · ${sourceLabel(data)}</p>
-      </div>`;
+    const oldDate=new Date(d); oldDate.setFullYear(d.getFullYear()-n);
+    const iso=isoDate(oldDate); const data=getRealWeather(iso);
+    html+=`<div class="info-card"><h3>Duela ${n} urte</h3><p><strong>${formatDate(iso)}</strong></p>`;
+    if(data){
+      html+=`<p>🌡️ Max: <strong>${data.max} ºC</strong></p><p>❄️ Min: <strong>${data.min} ºC</strong></p><p>🌧️ Euria: <strong>${data.rain} mm</strong></p><p class="small-note">${station} · 🟢 datu erreala</p>`;
+    }else html+=`<p class="small-note">Ez dago egun horretarako datu errealik.</p>`;
+    html+="</div>";
   });
   document.getElementById("duelaEmaitza").innerHTML=html;
 }
@@ -475,16 +479,16 @@ function getInauteriEgunak(year){
 
 function getInauteriSummary(year){
   const egunak=getInauteriEgunak(year);
-  let hottest=null,coldest=null,rainiest=null,snow=false,totalRain=0;
+  let hottest=null,coldest=null,rainiest=null,snow=false,totalRain=0,validCount=0;
   egunak.forEach(([name,dateObj])=>{
-    const data=getWeather(isoDate(dateObj));
-    totalRain+=data.rain;
+    const data=getRealWeather(isoDate(dateObj)); if(!data) return;
+    validCount++; totalRain+=data.rain;
     if(!hottest || data.max>hottest.data.max) hottest={name,data,dateObj};
     if(!coldest || data.min<coldest.data.min) coldest={name,data,dateObj};
     if(!rainiest || data.rain>rainiest.data.rain) rainiest={name,data,dateObj};
     if(data.snow==="Bai") snow=true;
   });
-  return {year,hottest,coldest,rainiest,snow,totalRain:Math.round(totalRain*10)/10};
+  return {year,hottest,coldest,rainiest,snow,totalRain:Math.round(totalRain*10)/10,validCount};
 }
 
 function ikusiInauteriak(){
@@ -494,30 +498,13 @@ function ikusiInauteriak(){
   let html=`<h3>${year}ko Tolosako Iñauteriak</h3>`;
   html+="<div class='table-wrap'><table><tr><th>Eguna</th><th>Data</th><th>Max</th><th>Min</th><th>Euria</th><th>Elurra</th><th>Egun mota</th></tr>";
   egunak.forEach(([name,dateObj])=>{
-    const date=isoDate(dateObj);
-    const data=getWeather(date);
-    html+=`<tr>
-      <td>${name}</td>
-      <td>${formatDate(date)}</td>
-      <td>${data.max} ºC</td>
-      <td>${data.min} ºC</td>
-      <td>${data.rain} mm</td>
-      <td>${data.snow}</td>
-      <td>${egunMota(data)}</td>
-    </tr>`;
+    const date=isoDate(dateObj); const data=getRealWeather(date);
+    html+=`<tr><td>${name}</td><td>${formatDate(date)}</td><td>${data ? data.max+" ºC" : "—"}</td><td>${data ? data.min+" ºC" : "—"}</td><td>${data ? data.rain+" mm" : "—"}</td><td>${data ? data.snow : "—"}</td><td>${data ? egunMota(data) : "Daturik ez"}</td></tr>`;
   });
   html+="</table></div>";
-  html+=`
-    <div class="summary-box" style="margin-top:14px;">
-      <h3>📊 Iñauterien laburpena</h3>
-      <p>🌡️ Egun beroena: <strong>${summary.hottest.name}</strong> (${summary.hottest.data.max} ºC)</p>
-      <p>🥶 Egun hotzena: <strong>${summary.coldest.name}</strong> (${summary.coldest.data.min} ºC)</p>
-      <p>🌧️ Egun euritsuena: <strong>${summary.rainiest.name}</strong> (${summary.rainiest.data.rain} mm)</p>
-      <p>🌧️ Euri guztira: <strong>${summary.totalRain} mm</strong></p>
-      <p>❄️ Elurra: <strong>${summary.snow ? "Bai" : "Ez"}</strong></p>
-      <p><strong>${inauteriBalorazioa(summary.totalRain,summary.snow)}</strong></p>
-      <p class="small-note">2023, 2024 eta 2025eko datuak Google Sheets/Euskalmet iturritik hartzen dira.</p>
-    </div>`;
+  if(summary.validCount){
+    html+=`<div class="summary-box" style="margin-top:14px;"><h3>📊 Iñauterien laburpena</h3><p>🌡️ Egun beroena: <strong>${summary.hottest.name}</strong> (${summary.hottest.data.max} ºC)</p><p>🥶 Egun hotzena: <strong>${summary.coldest.name}</strong> (${summary.coldest.data.min} ºC)</p><p>🌧️ Egun euritsuena: <strong>${summary.rainiest.name}</strong> (${summary.rainiest.data.rain} mm)</p><p>🌧️ Euri guztira: <strong>${summary.totalRain} mm</strong></p><p>❄️ Elurra: <strong>${summary.snow ? "Bai" : "Ez"}</strong></p><p><strong>${inauteriBalorazioa(summary.totalRain,summary.snow)}</strong></p></div>`;
+  }else html+=`<div class="warning-box">Ez dago urte horretako Iñauterietarako datu errealik.</div>`;
   document.getElementById("inauteriakEmaitza").innerHTML=html;
 }
 
@@ -638,7 +625,6 @@ function kalkulatuErrekorrak(){
 }
 
 beteUrteak();
-bilatu();
 loadWeatherData();
 </script>
 </body>
