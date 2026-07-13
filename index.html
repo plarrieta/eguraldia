@@ -53,9 +53,9 @@ th{background:#eef8ff}
 <header>
   <div style="font-size:0.95rem;opacity:.9;">📍 TOLOSA / ALEGIA</div>
   <h1>🌦️ Tolosako Eguraldi Historikoa</h1>
-  <p>Eguraldi historikoaren kontsulta-sistema · v0.8</p>
+  <p>Eguraldi historikoaren kontsulta-sistema · v0.9</p>
   <div id="dataStatus" class="source-badge">🟡 Datuak kargatzen...</div>
-  <div class="status-pill">🟢 Simulatutako datuak</div>
+  <div class="status-pill">🟢 Euskalmeteko datu errealak: 2023–2025</div>
 </header>
 
 <main>
@@ -112,25 +112,20 @@ th{background:#eef8ff}
 <section class="card panel" id="duela">
   <h2>⏳ Gaur duela...</h2>
   <div id="duelaEmaitza" class="info-grid"></div>
-  <p class="small-note">2025eko datuak Google Sheets-etik irakurtzen dira; beste urteetan datu simulatuak erabiltzen dira oraingoz.</p>
+  <p class="small-note">2023, 2024 eta 2025eko datuak Google Sheets/Euskalmet iturritik irakurtzen dira.</p>
 </section>
 
 <section class="card panel" id="grafikoak">
   <h2>📈 Grafikoen azalpena</h2>
-  <p>30 eguneko, 12 hilabeteko edo 5 urteko bilakaera ikus daiteke. 2025eko datuak errealak dira; beste urteetan datuak simulatuak dira oraingoz.</p>
+  <p>30 eguneko, 12 hilabeteko edo 5 urteko bilakaera ikus daiteke. Datu historiko errealak 2023–2025 tarterako daude erabilgarri.</p>
 </section>
 
 <section class="card panel" id="errekorrak">
   <h2>🏆 Errekorrak</h2>
-  <div class="table-wrap">
-    <table>
-      <tr><th>Errekorra</th><th>Balioa</th><th>Data</th><th>Estazioa</th><th>Azalpena</th></tr>
-      <tr><td>🔥 Egun beroena</td><td><strong>39,8 ºC</strong></td><td>2019ko uztailaren 23a</td><td>Alegia</td><td>Tenperatura maximo historiko altuena.</td></tr>
-      <tr><td>🥶 Egun hotzena</td><td><strong>-4,2 ºC</strong></td><td>2012ko otsailaren 4a</td><td>Alegia</td><td>Tenperatura minimo historiko baxuena.</td></tr>
-      <tr><td>🌧️ Egun euritsuena</td><td><strong>88 mm</strong></td><td>2021eko abenduaren 9a</td><td>Alegia</td><td>Egun bakarreko prezipitazio handiena.</td></tr>
-    </table>
+  <div id="errekorrakEmaitza" class="table-wrap">
+    <p>Datuak kargatzen...</p>
   </div>
-  <p><small>Oraingoz adibideko datuak dira.</small></p>
+  <p><small>Errekorrak 2023–2025 datu errealetatik automatikoki kalkulatzen dira.</small></p>
 </section>
 
 <section class="card panel" id="inauteriak">
@@ -174,7 +169,7 @@ input.value=new Date().toISOString().split("T")[0];
 let grafikoMota="egunak";
 let inauteriModua="bakarra";
 
-const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7vwdOMPgxf8t1TE_NfAiDzxl8PmOW-_GbM4dvHcNMKSnUPbfxOq4c1nMVJ37Y9DoWstz_rRqX6mnM/pub?gid=1792320740&single=true&output=csv";
+const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vR8lI14F_2vT5A_UY60tK3I8qcDSa5L3EUuUy1j4NgHC6bZpuRH0AY2ujGgG60BXK7S6QeOY4QRWQTE/pub?gid=1361111492&single=true&output=csv";
 let weatherByDate={};
 let realDataLoaded=false;
 
@@ -254,6 +249,7 @@ async function loadWeatherData(){
     });
     realDataLoaded=true;
     status.textContent=`🟢 Google Sheets/Euskalmet datuak kargatuta (${Object.keys(weatherByDate).length} egun)`;
+    kalkulatuErrekorrak();
   }catch(err){
     console.error(err);
     status.textContent="🔴 Ezin izan dira Google Sheets datuak kargatu; datu simulatuak erabiliko dira";
@@ -263,6 +259,14 @@ async function loadWeatherData(){
 
 function getWeather(dateString){
   return weatherByDate[dateString] || fakeWeather(dateString);
+}
+
+function getRealWeather(dateString){
+  return weatherByDate[dateString] || null;
+}
+
+function formatValue(value, unit){
+  return value===null || value===undefined ? "—" : `${value} ${unit}`;
 }
 
 function sourceLabel(data){
@@ -397,19 +401,23 @@ function gaurDuela(dateString){
 }
 
 function beteUrteak(){
-  const now=new Date().getFullYear();
+  const availableYears=[2025,2024,2023];
   const ids=["carnivalYear","carnivalStartYear","carnivalEndYear","sanJoanStartYear","sanJoanEndYear"];
   ids.forEach(id=>{
     const sel=document.getElementById(id);
-    for(let y=now;y>=2000;y--){
+    sel.innerHTML="";
+    availableYears.forEach(y=>{
       const op=document.createElement("option");
       op.value=y;
       op.textContent=y;
       sel.appendChild(op);
-    }
+    });
   });
-  document.getElementById("carnivalStartYear").value=String(Math.max(2000, now-10));
-  document.getElementById("sanJoanStartYear").value=String(Math.max(2000, now-10));
+  document.getElementById("carnivalYear").value="2025";
+  document.getElementById("carnivalStartYear").value="2023";
+  document.getElementById("carnivalEndYear").value="2025";
+  document.getElementById("sanJoanStartYear").value="2023";
+  document.getElementById("sanJoanEndYear").value="2025";
 }
 
 function easterDate(year){
@@ -508,7 +516,7 @@ function ikusiInauteriak(){
       <p>🌧️ Euri guztira: <strong>${summary.totalRain} mm</strong></p>
       <p>❄️ Elurra: <strong>${summary.snow ? "Bai" : "Ez"}</strong></p>
       <p><strong>${inauteriBalorazioa(summary.totalRain,summary.snow)}</strong></p>
-      <p class="small-note">2025eko datuak errealak dira; beste urteetan datuak simulatuak dira oraingoz. Hurrengo pausoa Google Sheets-eko datu errealak konektatzea da.</p>
+      <p class="small-note">2023, 2024 eta 2025eko datuak Google Sheets/Euskalmet iturritik hartzen dira.</p>
     </div>`;
   document.getElementById("inauteriakEmaitza").innerHTML=html;
 }
@@ -517,42 +525,33 @@ function ikusiInauteriTartea(){
   let start=parseInt(document.getElementById("carnivalStartYear").value);
   let end=parseInt(document.getElementById("carnivalEndYear").value);
   if(start>end){const temp=start;start=end;end=temp;}
-  const summaries=[];
-  for(let y=start;y<=end;y++) summaries.push(getInauteriSummary(y));
 
+  const wantedNames=["Ostegun Gizen","Ostiral Mehe","Zaldunita","Astelenita","Asteartita"];
   let html=`<h3>${start}–${end} arteko Iñauteriak</h3>`;
-  html+="<div class='table-wrap'><table><tr><th>Urtea</th><th>Zaldunita</th><th>Max handiena</th><th>Min txikiena</th><th>Euri guztira</th><th>Egun euritsuena</th><th>Elurra</th><th>Balorazioa</th></tr>";
-  summaries.forEach(s=>{
-    const zaldunita=isoDate(getInauteriEgunak(s.year)[3][1]);
+  html+="<div class='table-wrap'><table><tr><th>Urtea</th><th>Ostegun Gizena</th><th>Ostiral Mehea</th><th>Zaldunita</th><th>Astelenita</th><th>Asteartea</th></tr>";
+
+  for(let year=end;year>=start;year--){
+    const dayMap={};
+    getInauteriEgunak(year).forEach(([name,dateObj])=>{
+      if(wantedNames.includes(name)){
+        const date=isoDate(dateObj);
+        const data=getRealWeather(date);
+        dayMap[name]=data ? `${data.max} °C / ${data.rain} mm` : "—";
+      }
+    });
+
     html+=`<tr>
-      <td>${s.year}</td>
-      <td>${formatDate(zaldunita)}</td>
-      <td>${s.hottest.data.max} ºC (${s.hottest.name})</td>
-      <td>${s.coldest.data.min} ºC (${s.coldest.name})</td>
-      <td>${s.totalRain} mm</td>
-      <td>${s.rainiest.name} (${s.rainiest.data.rain} mm)</td>
-      <td>${s.snow ? "Bai" : "Ez"}</td>
-      <td>${inauteriBalorazioLaburra(s.totalRain,s.snow)}</td>
+      <td><strong>${year}</strong></td>
+      <td>${dayMap["Ostegun Gizen"] || "—"}</td>
+      <td>${dayMap["Ostiral Mehe"] || "—"}</td>
+      <td>${dayMap["Zaldunita"] || "—"}</td>
+      <td>${dayMap["Astelenita"] || "—"}</td>
+      <td>${dayMap["Asteartita"] || "—"}</td>
     </tr>`;
-  });
+  }
+
   html+="</table></div>";
-
-  const warmest=summaries.reduce((a,b)=>b.hottest.data.max>a.hottest.data.max?b:a);
-  const coldest=summaries.reduce((a,b)=>b.coldest.data.min<a.coldest.data.min?b:a);
-  const wettest=summaries.reduce((a,b)=>b.totalRain>a.totalRain?b:a);
-  const driest=summaries.reduce((a,b)=>b.totalRain<a.totalRain?b:a);
-  const snowy=summaries.filter(s=>s.snow).map(s=>s.year);
-
-  html+=`
-    <div class="summary-box" style="margin-top:14px;">
-      <h3>📊 Ikuspegi orokorra</h3>
-      <p>🎭 Iñauteririk beroenak: <strong>${warmest.year}</strong> (${warmest.hottest.data.max} ºC)</p>
-      <p>🥶 Iñauteririk hotzenak: <strong>${coldest.year}</strong> (${coldest.coldest.data.min} ºC)</p>
-      <p>🌧️ Iñauteririk euritsuenak: <strong>${wettest.year}</strong> (${wettest.totalRain} mm)</p>
-      <p>☀️ Iñauteririk lehorrenak: <strong>${driest.year}</strong> (${driest.totalRain} mm)</p>
-      <p>❄️ Elurra izan duten urteak: <strong>${snowy.length ? snowy.join(", ") : "ez dago"}</strong></p>
-      <p class="small-note">2025eko datuak errealak dira; beste urteetan datuak simulatuak dira oraingoz.</p>
-    </div>`;
+  html+=`<p class="small-note">Gelaxka bakoitzean eguneko tenperatura maximoa eta prezipitazioa agertzen dira. “—” ikurrak egun horretarako daturik ez dagoela adierazten du.</p>`;
   document.getElementById("inauteriakEmaitza").innerHTML=html;
 }
 
@@ -561,43 +560,38 @@ function ikusiSanJoanTartea(){
   let end=parseInt(document.getElementById("sanJoanEndYear").value);
   if(start>end){const temp=start;start=end;end=temp;}
 
-  const rows=[];
-  for(let year=start;year<=end;year++){
+  let html=`<h3>${start}–${end} arteko San Joanak</h3>`;
+  html+="<div class='table-wrap'><table><tr><th>Urtea</th><th>Max</th><th>Min</th><th>Euria</th></tr>";
+
+  const validRows=[];
+  for(let year=end;year>=start;year--){
     const date=`${year}-06-24`;
-    const data=getWeather(date);
-    rows.push({year,date,data});
+    const data=getRealWeather(date);
+    if(data) validRows.push({year,data});
+    html+=`<tr>
+      <td><strong>${year}</strong></td>
+      <td>${data ? data.max+" °C" : "—"}</td>
+      <td>${data ? data.min+" °C" : "—"}</td>
+      <td>${data ? data.rain+" mm" : "—"}</td>
+    </tr>`;
   }
 
-  let html=`<h3>${start}–${end} arteko San Joanak</h3>`;
-  html+="<div class='table-wrap'><table><tr><th>Urtea</th><th>Data</th><th>Max</th><th>Min</th><th>Euria</th><th>Hezetasuna</th><th>Elurra</th><th>Balorazioa</th></tr>";
-  rows.forEach(r=>{
-    html+=`<tr>
-      <td>${r.year}</td>
-      <td>${formatDate(r.date)}</td>
-      <td>${r.data.max} ºC</td>
-      <td>${r.data.min} ºC</td>
-      <td>${r.data.rain} mm</td>
-      <td>${r.data.humidity} %</td>
-      <td>${r.data.snow}</td>
-      <td>${sanJoanBalorazioLaburra(r.data)}</td>
-    </tr>`;
-  });
   html+="</table></div>";
 
-  const hottest=rows.reduce((a,b)=>b.data.max>a.data.max?b:a);
-  const coldest=rows.reduce((a,b)=>b.data.min<a.data.min?b:a);
-  const wettest=rows.reduce((a,b)=>b.data.rain>a.data.rain?b:a);
-  const driest=rows.reduce((a,b)=>b.data.rain<a.data.rain?b:a);
+  if(validRows.length){
+    const hottest=validRows.reduce((a,b)=>b.data.max>a.data.max?b:a);
+    const coldest=validRows.reduce((a,b)=>b.data.min<a.data.min?b:a);
+    const wettest=validRows.reduce((a,b)=>b.data.rain>a.data.rain?b:a);
+    html+=`
+      <div class="summary-box" style="margin-top:14px;">
+        <h3>📊 San Joanen laburpena</h3>
+        <p>🔥 San Joan beroena: <strong>${hottest.year}</strong> (${hottest.data.max} °C)</p>
+        <p>🥶 San Joan hotzena: <strong>${coldest.year}</strong> (${coldest.data.min} °C)</p>
+        <p>🌧️ San Joan euritsuena: <strong>${wettest.year}</strong> (${wettest.data.rain} mm)</p>
+      </div>`;
+  }
 
-  html+=`
-    <div class="summary-box" style="margin-top:14px;">
-      <h3>📊 San Joanen laburpena</h3>
-      <p>🔥 San Joan beroena: <strong>${hottest.year}</strong> (${hottest.data.max} ºC)</p>
-      <p>🥶 San Joan hotzena: <strong>${coldest.year}</strong> (${coldest.data.min} ºC)</p>
-      <p>🌧️ San Joan euritsuena: <strong>${wettest.year}</strong> (${wettest.data.rain} mm)</p>
-      <p>☀️ San Joan lehorrena: <strong>${driest.year}</strong> (${driest.data.rain} mm)</p>
-      <p class="small-note">2025eko datuak errealak dira; beste urteetan datuak simulatuak dira oraingoz. Gero Google Sheets/Euskalmet datuekin ordezkatuko dira.</p>
-    </div>`;
+  html+=`<p class="small-note">Taulak ekainaren 24ko Euskalmeteko datu errealak erabiltzen ditu.</p>`;
   document.getElementById("sanJoanEmaitza").innerHTML=html;
 }
 
@@ -622,6 +616,25 @@ function inauteriBalorazioa(totalRain,snow){
   if(totalRain<15) return "⛅ Iñauteri nahiko onak, euri gutxirekin.";
   if(totalRain<45) return "🌧️ Iñauteri euritsuak izan ziren.";
   return "🌧️🌧️ Iñauteri oso euritsuak izan ziren.";
+}
+
+function kalkulatuErrekorrak(){
+  const entries=Object.entries(weatherByDate);
+  if(!entries.length) return;
+
+  const hottest=entries.reduce((a,b)=>b[1].max>a[1].max?b:a);
+  const coldest=entries.reduce((a,b)=>b[1].min<a[1].min?b:a);
+  const wettest=entries.reduce((a,b)=>b[1].rain>a[1].rain?b:a);
+  const mostHumid=entries.reduce((a,b)=>b[1].humidity>a[1].humidity?b:a);
+
+  document.getElementById("errekorrakEmaitza").innerHTML=`
+    <table>
+      <tr><th>Errekorra</th><th>Balioa</th><th>Data</th><th>Estazioa</th></tr>
+      <tr><td>🔥 Egun beroena</td><td><strong>${hottest[1].max} °C</strong></td><td>${formatDate(hottest[0])}</td><td>${hottest[1].station}</td></tr>
+      <tr><td>🥶 Egun hotzena</td><td><strong>${coldest[1].min} °C</strong></td><td>${formatDate(coldest[0])}</td><td>${coldest[1].station}</td></tr>
+      <tr><td>🌧️ Egun euritsuena</td><td><strong>${wettest[1].rain} mm</strong></td><td>${formatDate(wettest[0])}</td><td>${wettest[1].station}</td></tr>
+      <tr><td>💧 Hezetasun handiena</td><td><strong>${mostHumid[1].humidity} %</strong></td><td>${formatDate(mostHumid[0])}</td><td>${mostHumid[1].station}</td></tr>
+    </table>`;
 }
 
 beteUrteak();
