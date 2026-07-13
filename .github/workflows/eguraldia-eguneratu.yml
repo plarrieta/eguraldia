@@ -27,15 +27,18 @@ jobs:
       - name: Euskalmet datuak sortu
         run: python scripts/euskalmet_datuak_sortu.py
 
-      - name: Aldaketak GitHubera igo
+       - name: Aldaketak GitHubera igo
         shell: bash
         run: |
-          if git diff --quiet -- data/datuak.json data/anomaliak.json; then
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/datuak.json data/anomaliak.json
+
+          if git diff --cached --quiet; then
             echo "Ez dago aldaketarik."
             exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/datuak.json data/anomaliak.json
+
           git commit -m "Euskalmet datuak automatikoki eguneratu"
           git push
