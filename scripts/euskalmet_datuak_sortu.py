@@ -22,7 +22,7 @@ DATA_FILE = OUTPUT_DIR / "datuak.json"
 ANOMALY_FILE = OUTPUT_DIR / "anomaliak.json"
 
 TIMEOUT = 45
-USER_AGENT = "Alegia-Eguraldi-Historikoa/2.2"
+USER_AGENT = "Alegia-Eguraldi-Historikoa/2.3"
 
 # C0E9 XMLko aldagai zehatzak.
 # Ez dugu "temaire" bezalako bilaketa zabala erabiliko.
@@ -170,61 +170,61 @@ def add_anomaly(anomalies, day, variable, value, reason):
 
 
 def seasonal_temperature_limits(day):
-    """Alegiako urtaroetarako oso muga zabalak; sentsore-akats nabarmenak soilik kentzeko."""
-    month = int(day[5:7])
-    if month in (12, 1, 2):
-        return -15.0, 35.0
-    if month in (3, 4, 5):
-        return -8.0, 40.0
-    if month in (6, 7, 8):
-        return 2.0, 45.0
-    return -8.0, 40.0
+    """Muga fisiko oso zabalak: muturreko sentsore-akats nabarmenak soilik kentzeko."""
+    return ABS_TEMP_MIN, ABS_TEMP_MAX
 
 
-def hampel_filter(values, day, anomalies, window=3, iterations=4):
+def hampel_filter(values, day, anomalies, window=3):
     """
-    10 minutuko seriean bat-bateko jauziak kentzen ditu.
-    Leiho lokaleko medianarekin eta MADarekin konparatzen da.
+    10 minutuko seriean jauzi isolatu eta ezinezkoak kentzen ditu.
+    Balio bat baztertzen da inguruko neurketek beste maila koherente bat erakusten dutenean.
     """
-    current = list(values)
+    if len(values) < 5:
+        return list(values)
 
-    for _ in range(iterations):
-        kept = []
-        removed = 0
+    cleaned = []
+    for i, value in enumerate(values):
+        left = max(0, i - window)
+        right = min(len(values), i + window + 1)
+        neighbors = [values[j] for j in range(left, right) if j != i]
 
-        for i, value in enumerate(current):
-            left = max(0, i - window)
-            right = min(len(current), i + window + 1)
-            neighborhood = current[left:right]
+        if len(neighbors) < 3:
+            cleaned.append(value)
+            continue
 
-            if len(neighborhood) < 5:
-                kept.append(value)
-                continue
+        local_median = statistics.median(neighbors)
+        deviations = [abs(v - local_median) for v in neighbors]
+        mad = statistics.median(deviations)
+        robust_sigma = 1.4826 * mad
 
-            local_median = statistics.median(neighborhood)
-            deviations = [abs(v - local_median) for v in neighborhood]
-            mad = statistics.median(deviations)
-            robust_sigma = 1.4826 * mad
-            threshold = max(4.0, 4.5 * robust_sigma)
+        # Gutxienez 6 ºC-ko alde nabarmena eskatzen dugu;
+        # serie egonkorretan MAD txikia izateak ez du balio normalik baztertuko.
+        threshold = max(6.0, 5.0 * robust_sigma)
 
-            if abs(value - local_median) <= threshold:
-                kept.append(value)
-            else:
-                add_anomaly(
-                    anomalies,
-                    day,
-                    "tenperatura",
-                    value,
-                    f"10 minutuko seriearekiko jauzi ezinezkoa "
-                    f"(mediana lokala {local_median:.1f} °C)",
-                )
-                removed += 1
+        # Aurreko eta hurrengo neurketek elkarrekin koherentzia badute,
+        # baina uneko balioa urrun badago, piko isolatua da.
+        isolated_spike = False
+        if 0 < i < len(values) - 1:
+            prev_v, next_v = values[i - 1], values[i + 1]
+            isolated_spike = (
+                abs(prev_v - next_v) <= 3.0
+                and abs(value - prev_v) > 8.0
+                and abs(value - next_v) > 8.0
+            )
 
-        current = kept
-        if removed == 0:
-            break
+        if abs(value - local_median) > threshold or isolated_spike:
+            add_anomaly(
+                anomalies,
+                day,
+                "tenperatura",
+                value,
+                f"10 minutuko seriearekiko jauzi isolatua "
+                f"(inguruko mediana {local_median:.1f} °C)",
+            )
+        else:
+            cleaned.append(value)
 
-    return current
+    return cleaned
 
 
 def clean_temperatures(values, day, anomalies):
@@ -244,25 +244,25 @@ def clean_temperatures(values, day, anomalies):
                 f"({seasonal_min}–{seasonal_max} °C)",
             )
 
-    if len(physically_valid) < MIN_DAILY_TEMPERATURE_READINGS:
+    if len(physically_valid) < 3:
         add_anomaly(
             anomalies,
             day,
             "eguna",
             len(physically_valid),
-            "tenperatura-neurketa baliodun gutxiegi",
+            "3 tenperatura-neurketa baliodun baino gutxiago",
         )
         return []
 
     cleaned = hampel_filter(physically_valid, day, anomalies)
 
-    if len(cleaned) < MIN_DAILY_TEMPERATURE_READINGS:
+    if len(cleaned) < 3:
         add_anomaly(
             anomalies,
             day,
             "eguna",
             len(cleaned),
-            "jauzi anomaloak kendu ondoren neurketa gutxiegi",
+            "jauzi anomaloak kendu ondoren 3 neurketa baino gutxiago",
         )
         return []
 
@@ -275,7 +275,7 @@ def robust_daily_extremes(values):
     hiru balio baxuenen eta hiru altuenen mediana erabiltzen da.
     """
     ordered = sorted(values)
-    sample_size = min(3, len(ordered))
+    sample_size = 3 if len(ordered) >= 3 else len(ordered)
     minimum = statistics.median(ordered[:sample_size])
     maximum = statistics.median(ordered[-sample_size:])
     return round(maximum, 1), round(minimum, 1)
@@ -422,9 +422,9 @@ def main():
         "azken_data": rows[-1]["data"],
         "egun_kopurua": len(rows),
         "anomalia_kopurua": len(anomalies),
-        "script_bertsioa": "2.2",
+        "script_bertsioa": "2.3",
         "erabilitako_eremuak": EXACT_TAGS,
-        "tenperatura_garbiketa": "urtaroko mugak + Hampel lokal iteratiboa + 3 neurketako mutur sendoak",
+        "tenperatura_garbiketa": "muga fisiko zabalak + jauzi isolatuen iragazkia + 3 neurketako mutur sendoak",
     }
 
     DATA_FILE.write_text(
