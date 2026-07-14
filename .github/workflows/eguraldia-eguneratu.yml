@@ -25,6 +25,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: 2014ko abuztuaren diagnostikoa
+        run: python scripts/diagnostikoa_2014_08.py
+
       - name: Euskalmet datuak sortu
         run: python scripts/euskalmet_datuak_sortu.py
 
