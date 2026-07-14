@@ -26,7 +26,7 @@ jobs:
           python-version: "3.12"
 
       - name: Lau errekorrak egiaztatu
-        run: python tmp/diagnostikoa_errekorrak.py
+        run: python tmp/tmp/diagnostikoa_errekorrak.py
 
       - name: Aldaketak GitHubera igo
         shell: bash
