@@ -22,7 +22,7 @@ DATA_FILE = OUTPUT_DIR / "datuak.json"
 ANOMALY_FILE = OUTPUT_DIR / "anomaliak.json"
 
 TIMEOUT = 45
-USER_AGENT = "Alegia-Eguraldi-Historikoa/2.1"
+USER_AGENT = "Alegia-Eguraldi-Historikoa/2.2"
 
 # C0E9 XMLko aldagai zehatzak.
 # Ez dugu "temaire" bezalako bilaketa zabala erabiliko.
@@ -46,7 +46,7 @@ ABS_RAIN_MIN, ABS_RAIN_MAX_INTERVAL = 0.0, 100.0
 TEMP_MEDIAN_MAX_DEVIATION = 12.0
 
 # Gutxieneko neurketa kopurua egun bat onartzeko.
-MIN_DAILY_TEMPERATURE_READINGS = 12
+MIN_DAILY_TEMPERATURE_READINGS = 36
 
 
 def fetch_bytes(url):
@@ -169,11 +169,70 @@ def add_anomaly(anomalies, day, variable, value, reason):
     })
 
 
+def seasonal_temperature_limits(day):
+    """Alegiako urtaroetarako oso muga zabalak; sentsore-akats nabarmenak soilik kentzeko."""
+    month = int(day[5:7])
+    if month in (12, 1, 2):
+        return -15.0, 35.0
+    if month in (3, 4, 5):
+        return -8.0, 40.0
+    if month in (6, 7, 8):
+        return 2.0, 45.0
+    return -8.0, 40.0
+
+
+def hampel_filter(values, day, anomalies, window=3, iterations=4):
+    """
+    10 minutuko seriean bat-bateko jauziak kentzen ditu.
+    Leiho lokaleko medianarekin eta MADarekin konparatzen da.
+    """
+    current = list(values)
+
+    for _ in range(iterations):
+        kept = []
+        removed = 0
+
+        for i, value in enumerate(current):
+            left = max(0, i - window)
+            right = min(len(current), i + window + 1)
+            neighborhood = current[left:right]
+
+            if len(neighborhood) < 5:
+                kept.append(value)
+                continue
+
+            local_median = statistics.median(neighborhood)
+            deviations = [abs(v - local_median) for v in neighborhood]
+            mad = statistics.median(deviations)
+            robust_sigma = 1.4826 * mad
+            threshold = max(4.0, 4.5 * robust_sigma)
+
+            if abs(value - local_median) <= threshold:
+                kept.append(value)
+            else:
+                add_anomaly(
+                    anomalies,
+                    day,
+                    "tenperatura",
+                    value,
+                    f"10 minutuko seriearekiko jauzi ezinezkoa "
+                    f"(mediana lokala {local_median:.1f} °C)",
+                )
+                removed += 1
+
+        current = kept
+        if removed == 0:
+            break
+
+    return current
+
+
 def clean_temperatures(values, day, anomalies):
+    seasonal_min, seasonal_max = seasonal_temperature_limits(day)
     physically_valid = []
 
     for value in values:
-        if ABS_TEMP_MIN <= value <= ABS_TEMP_MAX:
+        if seasonal_min <= value <= seasonal_max:
             physically_valid.append(value)
         else:
             add_anomaly(
@@ -181,7 +240,8 @@ def clean_temperatures(values, day, anomalies):
                 day,
                 "tenperatura",
                 value,
-                f"{ABS_TEMP_MIN}–{ABS_TEMP_MAX} °C tartetik kanpo",
+                f"urtaroko muga zabaletatik kanpo "
+                f"({seasonal_min}–{seasonal_max} °C)",
             )
 
     if len(physically_valid) < MIN_DAILY_TEMPERATURE_READINGS:
@@ -194,23 +254,31 @@ def clean_temperatures(values, day, anomalies):
         )
         return []
 
-    median = statistics.median(physically_valid)
-    cleaned = []
+    cleaned = hampel_filter(physically_valid, day, anomalies)
 
-    for value in physically_valid:
-        deviation = abs(value - median)
-        if deviation <= TEMP_MEDIAN_MAX_DEVIATION:
-            cleaned.append(value)
-        else:
-            add_anomaly(
-                anomalies,
-                day,
-                "tenperatura",
-                value,
-                f"eguneko medianatik {deviation:.1f} °C aldenduta",
-            )
+    if len(cleaned) < MIN_DAILY_TEMPERATURE_READINGS:
+        add_anomaly(
+            anomalies,
+            day,
+            "eguna",
+            len(cleaned),
+            "jauzi anomaloak kendu ondoren neurketa gutxiegi",
+        )
+        return []
 
     return cleaned
+
+
+def robust_daily_extremes(values):
+    """
+    Neurketa bakarreko piko batek errekorra ez aldatzeko,
+    hiru balio baxuenen eta hiru altuenen mediana erabiltzen da.
+    """
+    ordered = sorted(values)
+    sample_size = min(3, len(ordered))
+    minimum = statistics.median(ordered[:sample_size])
+    maximum = statistics.median(ordered[-sample_size:])
+    return round(maximum, 1), round(minimum, 1)
 
 
 def parse_month(raw, anomalies):
@@ -290,8 +358,7 @@ def parse_month(raw, anomalies):
         if not temperatures:
             continue
 
-        max_temp = round(max(temperatures), 1)
-        min_temp = round(min(temperatures), 1)
+        max_temp, min_temp = robust_daily_extremes(temperatures)
 
         if min_temp > max_temp:
             add_anomaly(
@@ -355,8 +422,9 @@ def main():
         "azken_data": rows[-1]["data"],
         "egun_kopurua": len(rows),
         "anomalia_kopurua": len(anomalies),
-        "script_bertsioa": "2.1",
+        "script_bertsioa": "2.2",
         "erabilitako_eremuak": EXACT_TAGS,
+        "tenperatura_garbiketa": "urtaroko mugak + Hampel lokal iteratiboa + 3 neurketako mutur sendoak",
     }
 
     DATA_FILE.write_text(
