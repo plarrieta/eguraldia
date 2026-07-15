@@ -63,7 +63,7 @@ th{background:#eef8ff}
 <header>
   <div style="font-size:0.95rem;opacity:.9;">📍 TOLOSA</div>
   <h1>🌦️ Tolosako Eguraldi Historikoa</h1>
-  <p>Eguraldi historikoaren kontsulta-sistema · v0.18</p>
+  <p>Eguraldi historikoaren kontsulta-sistema · v0.19</p>
 </header>
 
 <main>
@@ -83,6 +83,15 @@ th{background:#eef8ff}
     <div class="data-box"><div class="icon">❄️</div><div class="value" id="minTemp">-- ºC</div><div class="label">Tenperatura minimoa</div></div>
     <div class="data-box"><div class="icon">🌧️</div><div class="value" id="rain">-- mm</div><div class="label">Prezipitazioa</div></div>
     <div class="data-box"><div class="icon">💧</div><div class="value" id="humidity">-- %</div><div class="label">Hezetasuna</div></div>
+  </div>
+</section>
+
+
+<section class="card">
+  <div class="menu">
+    <button onclick="erakutsi('errekorrak')">🏆 Errekorrak</button>
+    <button onclick="erakutsi('inauteriak')">🎭 Iñauteriak</button>
+    <button onclick="erakutsi('sanjoan')">🔥 San Joanak</button>
   </div>
 </section>
 
@@ -123,6 +132,20 @@ th{background:#eef8ff}
     <button onclick="ikusiSanJoanTartea()">Ikusi San Joanak</button>
   </div>
   <div id="sanJoanEmaitza"></div>
+</section>
+
+
+<section class="card">
+  <h2>📈 Grafikoa</h2>
+  <div class="row" style="margin-bottom:12px;">
+    <button class="small-btn" onclick="grafikoMota='egunak'; marraztuGrafikoa()">30 egun</button>
+    <button class="small-btn" onclick="grafikoMota='seiHilabete'; marraztuGrafikoa()">6 hilabete</button>
+    <button class="small-btn" onclick="grafikoMota='hilabeteak'; marraztuGrafikoa()">12 hilabete</button>
+    <button class="small-btn" onclick="grafikoMota='urteak'; marraztuGrafikoa()">5 urte</button>
+    <button class="small-btn" onclick="grafikoMota='historikoa'; marraztuGrafikoa()">Historikoa</button>
+  </div>
+  <canvas id="chart" width="1200" height="360"></canvas>
+  <p id="chartNote" class="small-note" style="margin:8px 6px 0;"></p>
 </section>
 
 </main>
