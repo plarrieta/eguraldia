@@ -3,11 +3,19 @@
     "iturria": "Euskalmet / Euskadi Open Data",
     "estazioa": "Alegia",
     "kodea": "C0E9",
-    "sortua_utc": "2026-07-14T11:06:29Z",
+    "sortua_utc": "2026-07-15T11:08:48Z",
     "lehen_data": "2012-01-01",
     "azken_data": "2026-06-30",
-    "egun_kopurua": 5265,
-    "anomalia_kopurua": 81635
+    "egun_kopurua": 5258,
+    "anomalia_kopurua": 81642,
+    "script_bertsioa": "3.1",
+    "lau_estazioen_txostena": "tmp/lau_estazioen_konparazioa.csv",
+    "lau_estazioen_egoera_kopuruak": {
+      "EGUN_AKASTUNA": 25,
+      "EGUN_SUSMAGARRIA": 5,
+      "EGUN_FIDAGARRIA": 21
+    },
+    "lau_estazioen_arabera_baztertutako_egunak": 30
   },
   "datuak": [
     {
@@ -8489,24 +8497,6 @@
       "hezetasuna": 79.4
     },
     {
-      "data": "2014-08-01",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 26.0,
-      "min": 8.0,
-      "euria": 0.0,
-      "hezetasuna": 76.3
-    },
-    {
-      "data": "2014-08-02",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 28.2,
-      "min": 9.4,
-      "euria": 5.4,
-      "hezetasuna": 70.6
-    },
-    {
       "data": "2014-08-03",
       "estazioa": "Alegia",
       "kodea": "C0E9",
@@ -8523,15 +8513,6 @@
       "min": 19.4,
       "euria": 4.8,
       "hezetasuna": 83.0
-    },
-    {
-      "data": "2014-08-05",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 26.7,
-      "min": 5.0,
-      "euria": 0.0,
-      "hezetasuna": 75.1
     },
     {
       "data": "2014-08-26",
@@ -8660,15 +8641,6 @@
       "hezetasuna": 87.8
     },
     {
-      "data": "2014-09-09",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 37.3,
-      "min": 20.7,
-      "euria": 0.0,
-      "hezetasuna": 83.0
-    },
-    {
       "data": "2014-09-10",
       "estazioa": "Alegia",
       "kodea": "C0E9",
@@ -8757,15 +8729,6 @@
       "min": 15.5,
       "euria": 0.0,
       "hezetasuna": 76.4
-    },
-    {
-      "data": "2014-09-20",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 34.5,
-      "min": 17.3,
-      "euria": 0.1,
-      "hezetasuna": 82.8
     },
     {
       "data": "2014-09-21",
@@ -12098,15 +12061,6 @@
       "hezetasuna": 85.5
     },
     {
-      "data": "2015-09-29",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 22.5,
-      "min": 13.9,
-      "euria": 0.0,
-      "hezetasuna": 84.9
-    },
-    {
       "data": "2015-09-30",
       "estazioa": "Alegia",
       "kodea": "C0E9",
@@ -14094,15 +14048,6 @@
       "min": 14.2,
       "euria": 1.6,
       "hezetasuna": 72.3
-    },
-    {
-      "data": "2016-05-08",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 20.2,
-      "min": 8.7,
-      "euria": 1.8,
-      "hezetasuna": 73.0
     },
     {
       "data": "2016-05-11",
