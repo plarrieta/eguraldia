@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import csv
 import json
 import math
 import re
@@ -9,7 +10,7 @@ import time
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 
@@ -27,8 +28,13 @@ OUTPUT_DIR = Path("data")
 DATA_FILE = OUTPUT_DIR / "datuak.json"
 ANOMALY_FILE = OUTPUT_DIR / "anomaliak.json"
 
+# Lau estazioen diagnostikoak sortutako txostena.
+# EGUN_AKASTUNA eta EGUN_SUSMAGARRIA diren egunak ez dira datuak.json-en sartuko.
+STATION_COMPARISON_FILE = Path("tmp/lau_estazioen_konparazioa.csv")
+EXCLUDED_COMPARISON_STATUSES = {"EGUN_AKASTUNA", "EGUN_SUSMAGARRIA"}
+
 TIMEOUT = 45
-USER_AGENT = "Alegia-Eguraldi-Historikoa/3.0"
+USER_AGENT = "Alegia-Eguraldi-Historikoa/3.1"
 
 
 # ============================================================
@@ -560,6 +566,71 @@ def parse_month(raw, anomalies):
 
 
 # ============================================================
+# LAU ESTAZIOEN KALITATE-KONTROLA
+# ============================================================
+
+def load_station_comparison():
+    """
+    Lau estazioen konparazio-txostena irakurtzen du.
+
+    Itzultzen du:
+      - baztertutako daten hiztegia
+      - egoera bakoitzeko kopurua
+    """
+    excluded_dates = {}
+    status_counts = {}
+
+    if not STATION_COMPARISON_FILE.exists():
+        print(
+            f"OHARRA: ez da aurkitu {STATION_COMPARISON_FILE}. "
+            "Lau estazioen kanpo-iragazkia ez da aplikatuko."
+        )
+        return excluded_dates, status_counts
+
+    with STATION_COMPARISON_FILE.open(
+        "r",
+        encoding="utf-8-sig",
+        newline=""
+    ) as handle:
+        reader = csv.DictReader(handle, delimiter=";")
+
+        required = {"DATA", "EGOERA"}
+        if not required.issubset(set(reader.fieldnames or [])):
+            raise RuntimeError(
+                f"{STATION_COMPARISON_FILE} fitxategiak "
+                "DATA eta EGOERA zutabeak behar ditu."
+            )
+
+        for row in reader:
+            day = (row.get("DATA") or "").strip()
+            status = (row.get("EGOERA") or "").strip()
+
+            if not day or not status:
+                continue
+
+            status_counts[status] = status_counts.get(status, 0) + 1
+
+            if status in EXCLUDED_COMPARISON_STATUSES:
+                excluded_dates[day] = {
+                    "egoera": status,
+                    "argi_akastunen_portzentajea": (
+                        row.get("ARGI_AKASTUNEN_PORTZENTAIA") or ""
+                    ).strip(),
+                    "susmagarri_guztien_portzentajea": (
+                        row.get("SUSMAGARRI_GUZTIEN_PORTZENTAIA") or ""
+                    ).strip(),
+                }
+
+    print(
+        "Lau estazioen txostena: "
+        f"{len(excluded_dates)} egun baztertuko dira "
+        f"({', '.join(sorted(EXCLUDED_COMPARISON_STATUSES))})."
+    )
+
+    return excluded_dates, status_counts
+
+
+# ============================================================
 # PROGRAMA NAGUSIA
 # ============================================================
 
@@ -572,6 +643,8 @@ def main():
 
     by_date = {}
     anomalies = []
+
+    excluded_dates, comparison_status_counts = load_station_comparison()
 
     for year in range(
         FIRST_YEAR,
@@ -595,7 +668,28 @@ def main():
                 raw,
                 anomalies
             ):
-                by_date[row["data"]] = row
+                day = row["data"]
+
+                if day in excluded_dates:
+                    comparison = excluded_dates[day]
+
+                    anomalies.append({
+                        "data": day,
+                        "aldagaia": "eguna",
+                        "balioa": None,
+                        "arrazoia":
+                            "lau estazioen konparazioaren arabera baztertuta",
+                        "lau_estazioen_egoera":
+                            comparison["egoera"],
+                        "argi_akastunen_portzentajea":
+                            comparison["argi_akastunen_portzentajea"],
+                        "susmagarri_guztien_portzentajea":
+                            comparison["susmagarri_guztien_portzentajea"],
+                    })
+
+                    continue
+
+                by_date[day] = row
 
             time.sleep(0.08)
 
@@ -620,9 +714,10 @@ def main():
             STATION_CODE,
 
         "sortua_utc":
-            datetime.utcnow()
+            datetime.now(timezone.utc)
             .replace(microsecond=0)
-            .isoformat() + "Z",
+            .isoformat()
+            .replace("+00:00", "Z"),
 
         "lehen_data":
             rows[0]["data"],
@@ -635,6 +730,18 @@ def main():
 
         "anomalia_kopurua":
             len(anomalies),
+
+        "script_bertsioa":
+            "3.1",
+
+        "lau_estazioen_txostena":
+            str(STATION_COMPARISON_FILE),
+
+        "lau_estazioen_egoera_kopuruak":
+            comparison_status_counts,
+
+        "lau_estazioen_arabera_baztertutako_egunak":
+            len(excluded_dates),
     }
 
     DATA_FILE.write_text(
@@ -669,6 +776,11 @@ def main():
     print(
         f"Sortuta: {ANOMALY_FILE} "
         f"({len(anomalies)} anomalia)"
+    )
+
+    print(
+        "Lau estazioen arabera baztertutako egunak: "
+        f"{len(excluded_dates)}"
     )
 
 
