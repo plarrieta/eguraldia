@@ -1,17 +1,19 @@
-name: Lau estazioen konparazioa
+name: Euskalmet datuak eguneratu
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1"
 
 permissions:
   contents: write
 
 concurrency:
-  group: lau-estazioen-konparazioa
+  group: euskalmet-datuak
   cancel-in-progress: false
 
 jobs:
-  konparatu:
+  eguneratu:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,22 +25,21 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Lau estazioak konparatu
-        run: python tmp/diagnostikoa_lau_estazioak.py
+      - name: Euskalmet datuak sortu
+        run: python scripts/euskalmet_datuak_sortu.py
 
-      - name: Txostenak GitHubera igo
+      - name: Aldaketak GitHubera igo
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add tmp/lau_estazioen_konparazioa.json
-          git add tmp/lau_estazioen_konparazioa.csv
+          git add data/datuak.json data/anomaliak.json
 
           if git diff --cached --quiet; then
             echo "Ez dago aldaketarik."
             exit 0
           fi
 
-          git commit -m "Lau estazioen konparazio-txostena eguneratu"
+          git commit -m "Euskalmet datuak lau estazioen kontrolarekin eguneratu"
           git push
