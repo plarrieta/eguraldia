@@ -23,7 +23,7 @@ button:hover{background:#095986}
 .value{font-size:1.6rem;font-weight:800;margin-top:6px}
 .label{font-size:.9rem;opacity:.75}
 canvas{width:100%;height:320px;background:#f7fcff;border-radius:16px}
-.menu{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .menu button,.small-btn,.tab-btn{background:white;color:#0f6fa8;border:2px solid #b8dff2}
 .tab-btn.active{background:#0f6fa8;color:white;border-color:#0f6fa8}
 .panel{display:none;line-height:1.6}
@@ -34,6 +34,15 @@ th{background:#eef8ff}
 .summary-box{background:#eef8ff;border-radius:16px;padding:16px}
 .badge{display:inline-block;background:#e4f4ff;padding:6px 10px;border-radius:999px;margin:4px;font-weight:700}
 .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.records-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.record-card{background:#eef8ff;border-radius:18px;padding:14px}
+.record-card h3{margin-top:0;text-align:center}
+.record-list{list-style:none;padding:0;margin:0}
+.record-list li{margin:7px 0}
+.record-link{width:100%;text-align:left;background:white;color:#163247;border:1px solid #c7dce8;padding:10px 12px;border-radius:12px;font-weight:700}
+.record-link:hover{background:#dff3ff;color:#0f6fa8}
+.footer-info{max-width:1400px;width:95%;margin:0 auto 22px;padding:16px;text-align:center;background:white;border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.footer-info .status-pill{margin:5px}
 .info-card{background:#eef8ff;border-radius:16px;padding:14px}
 .small-note{font-size:.9rem;opacity:.75}
 .source-badge{display:inline-block;margin-top:10px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:6px 10px;border-radius:999px;font-weight:700;font-size:.9rem}
@@ -44,6 +53,7 @@ th{background:#eef8ff}
   .grid{grid-template-columns:repeat(2,1fr)}
   .menu{grid-template-columns:repeat(2,1fr)}
   .info-grid{grid-template-columns:1fr}
+  .records-grid{grid-template-columns:1fr}
   canvas{height:240px}
 }
 </style>
@@ -51,22 +61,16 @@ th{background:#eef8ff}
 
 <body>
 <header>
-  <div style="font-size:0.95rem;opacity:.9;">📍 TOLOSA / ALEGIA</div>
+  <div style="font-size:0.95rem;opacity:.9;">📍 TOLOSA</div>
   <h1>🌦️ Tolosako Eguraldi Historikoa</h1>
-  <p>Eguraldi historikoaren kontsulta-sistema · v0.17</p>
-  <div id="dataStatus" class="source-badge">🟡 Datuak kargatzen...</div>
-  <div class="status-pill">🟢 Euskalmeteko datu errealak · eguneratze automatikoa</div>
+  <p>Eguraldi historikoaren kontsulta-sistema · v0.18</p>
 </header>
 
 <main>
 
 <section class="card">
-  <h2>📅 Data bilatu</h2>
+  <h2>📅 Eguna bilatu</h2>
   <div class="search">
-    <select id="stationInput">
-      <option selected>Alegia</option>
-      <option>Belauntza</option>
-    </select>
     <input type="date" id="dateInput">
     <button onclick="bilatu()">Bilatu</button>
   </div>
@@ -82,51 +86,10 @@ th{background:#eef8ff}
   </div>
 </section>
 
-<section class="card">
-  <h2>📈 Grafikoa</h2>
-  <div class="row" style="margin-bottom:12px;">
-    <button class="small-btn" onclick="grafikoMota='egunak'; marraztuGrafikoa()">30 egun</button>
-    <button class="small-btn" onclick="grafikoMota='hilabeteak'; marraztuGrafikoa()">12 hilabete</button>
-    <button class="small-btn" onclick="grafikoMota='urteak'; marraztuGrafikoa()">5 urte</button>
-    <button class="small-btn" onclick="grafikoMota='historikoa'; marraztuGrafikoa()">Historikoa</button>
-  </div>
-  <canvas id="chart" width="1200" height="360"></canvas>
-  <p id="chartNote" class="small-note" style="margin:8px 6px 0;"></p>
-</section>
-
-<section class="card">
-  <div class="menu">
-    <button onclick="erakutsi('eguna')">📅 Eguna</button>
-    <button onclick="erakutsi('duela')">⏳ Gaur duela</button>
-    <button onclick="erakutsi('grafikoak')">📈 Grafikoak</button>
-    <button onclick="erakutsi('errekorrak')">🏆 Errekorrak</button>
-    <button onclick="erakutsi('inauteriak')">🎭 Iñauteriak</button>
-    <button onclick="erakutsi('sanjoan')">🔥 San Joanak</button>
-  </div>
-</section>
-
-<section class="card panel active" id="eguna">
-  <h2>📅 Egunaren laburpena</h2>
-  <div class="summary-box" id="laburpena"></div>
-</section>
-
-<section class="card panel" id="duela">
-  <h2>⏳ Gaur duela...</h2>
-  <div id="duelaEmaitza" class="info-grid"></div>
-  <p class="small-note">2023, 2024 eta 2025eko datuak Euskalmet / Euskadi Open Data iturritik irakurtzen dira.</p>
-</section>
-
-<section class="card panel" id="grafikoak">
-  <h2>📈 Grafikoen azalpena</h2>
-  <p>30 eguneko, 12 hilabeteko, aurreko 5 urteko edo serie historiko osoko bilakaera ikus daiteke. Datu historiko errealak 2012–2026 tarterako daude erabilgarri.</p>
-</section>
-
-<section class="card panel" id="errekorrak">
+<section class="card panel active" id="errekorrak">
   <h2>🏆 Errekorrak</h2>
-  <div id="errekorrakEmaitza" class="table-wrap">
-    <p>Datuak kargatzen...</p>
-  </div>
-  <p><small>Errekorrak 2012–2026 datu errealetatik automatikoki kalkulatzen dira.</small></p>
+  <div id="errekorrakEmaitza"><p>Datuak kargatzen...</p></div>
+  <p class="small-note">Top 10 zerrendak datu historiko fidagarrietatik automatikoki kalkulatzen dira. Egun batean klik eginez gero, egun hori goiko blokean kargatuko da.</p>
 </section>
 
 <section class="card panel" id="inauteriak">
@@ -163,6 +126,12 @@ th{background:#eef8ff}
 </section>
 
 </main>
+
+<footer class="footer-info">
+  <div id="dataStatus" class="status-pill">🟡 Datuak kargatzen...</div>
+  <div class="status-pill">🟢 Euskalmeteko datu errealak · eguneratze automatikoa</div>
+  <p class="small-note">Datu nagusiak Euskalmeteko Alegia estaziotik (C0E9) jasotzen dira. Belauntza, Zizurkil eta Araxes estazioak datu susmagarriak kontrastatzeko erabiltzen dira.</p>
+</footer>
 
 <script>
 const input=document.getElementById("dateInput");
@@ -245,37 +214,21 @@ function sourceLabel(data){
 
 function bilatu(){
   const date=input.value;
-  const station=document.getElementById("stationInput").value;
   const data=getWeather(date);
-  document.getElementById("egunarenIzenburua").textContent=station+" · "+formatDate(date);
+  document.getElementById("egunarenIzenburua").textContent=formatDate(date);
   if(!data){
     document.getElementById("maxTemp").textContent="-- ºC";
     document.getElementById("minTemp").textContent="-- ºC";
     document.getElementById("rain").textContent="-- mm";
     document.getElementById("humidity").textContent="-- %";
 
-    document.getElementById("laburpena").innerHTML="<div class='warning-box'><strong>Ez dago daturik aukeratutako egun honetarako.</strong><br>Une honetan 2012–2026 arteko datu errealak daude eskuragarri.</div>";
-    gaurDuela(date);
     marraztuGrafikoa();
     return;
   }
-  const avg=((data.max+data.min)/2).toFixed(1);
   document.getElementById("maxTemp").textContent=data.max+" ºC";
   document.getElementById("minTemp").textContent=data.min+" ºC";
   document.getElementById("rain").textContent=data.rain+" mm";
   document.getElementById("humidity").textContent=humidityLabel(data.humidity);
-
-  document.getElementById("laburpena").innerHTML=
-    "<h3>"+formatDate(date)+"</h3>"+
-    "<span class='badge'>🌡️ Max: "+data.max+" ºC</span>"+
-    "<span class='badge'>❄️ Min: "+data.min+" ºC</span>"+
-    "<span class='badge'>📊 Batez bestekoa: "+avg+" ºC</span>"+
-    "<span class='badge'>🌧️ Euria: "+data.rain+" mm</span>"+
-    "<span class='badge'>💧 Hezetasuna: "+humidityLabel(data.humidity)+"</span>"+
-
-    "<span class='badge'>🟢 datu erreala</span>"+
-    "<p><strong>"+egunMota(data)+"</strong></p>";
-  gaurDuela(date);
   marraztuGrafikoa();
 }
 
@@ -321,6 +274,30 @@ function marraztuGrafikoa(){
       d.setDate(d.getDate()-i);
       const data=getRealWeather(isoDate(d));
       if(data) points.push({label:String(d.getDate()),value:data.max});
+    }
+  }
+
+  if(grafikoMota==="seiHilabete"){
+    title="Tenperatura maximoak · azken 6 hilabeteak";
+    const startDate=new Date(selectedDate);
+    startDate.setMonth(startDate.getMonth()-6);
+    const cursor=new Date(startDate);
+    let weekIndex=0;
+    while(cursor<=selectedDate){
+      const weekValues=[];
+      const weekStart=new Date(cursor);
+      for(let i=0;i<7 && cursor<=selectedDate;i++){
+        const data=getRealWeather(isoDate(cursor));
+        if(data) weekValues.push(data.max);
+        cursor.setDate(cursor.getDate()+1);
+      }
+      if(weekValues.length){
+        points.push({
+          label:weekIndex%4===0 ? `${weekStart.getMonth()+1}/${String(weekStart.getDate()).padStart(2,"0")}` : "",
+          value:weekValues.reduce((a,b)=>a+b,0)/weekValues.length
+        });
+      }
+      weekIndex++;
     }
   }
 
@@ -426,23 +403,6 @@ function drawLineChart(ctx,canvas,values,labels,title){
     ctx.fillText(label,x,canvas.height-20);
   });
   ctx.textAlign="left";
-}
-
-function gaurDuela(dateString){
-  const d=new Date(dateString+"T00:00:00");
-  const station=document.getElementById("stationInput").value;
-  const years=[1,5,10];
-  let html="";
-  years.forEach(n=>{
-    const oldDate=new Date(d); oldDate.setFullYear(d.getFullYear()-n);
-    const iso=isoDate(oldDate); const data=getRealWeather(iso);
-    html+=`<div class="info-card"><h3>Duela ${n} urte</h3><p><strong>${formatDate(iso)}</strong></p>`;
-    if(data){
-      html+=`<p>🌡️ Max: <strong>${data.max} ºC</strong></p><p>❄️ Min: <strong>${data.min} ºC</strong></p><p>🌧️ Euria: <strong>${data.rain} mm</strong></p><p class="small-note">${station} · 🟢 datu erreala</p>`;
-    }else html+=`<p class="small-note">Ez dago egun horretarako datu errealik.</p>`;
-    html+="</div>";
-  });
-  document.getElementById("duelaEmaitza").innerHTML=html;
 }
 
 function beteUrteak(){
@@ -655,25 +615,29 @@ function kalkulatuErrekorrak(){
   const entries=Object.entries(weatherByDate);
   if(!entries.length) return;
 
-  // Datu anomaloak baztertu errekorrak kalkulatu aurretik.
-  const validMax=entries.filter(([,d])=>Number.isFinite(d.max) && d.max>=-30 && d.max<=50);
-  const validMin=entries.filter(([,d])=>Number.isFinite(d.min) && d.min>=-30 && d.min<=50);
-  const validRain=entries.filter(([,d])=>Number.isFinite(d.rain) && d.rain>=0);
-  const validHumidity=entries.filter(([,d])=>Number.isFinite(d.humidity) && d.humidity>=0 && d.humidity<=100);
+  const validMax=entries.filter(([,d])=>Number.isFinite(d.max) && d.max>=-30 && d.max<=50).sort((a,b)=>b[1].max-a[1].max).slice(0,10);
+  const validMin=entries.filter(([,d])=>Number.isFinite(d.min) && d.min>=-30 && d.min<=50).sort((a,b)=>a[1].min-b[1].min).slice(0,10);
+  const validRain=entries.filter(([,d])=>Number.isFinite(d.rain) && d.rain>=0).sort((a,b)=>b[1].rain-a[1].rain).slice(0,10);
 
-  const hottest=validMax.reduce((a,b)=>b[1].max>a[1].max?b:a);
-  const coldest=validMin.reduce((a,b)=>b[1].min<a[1].min?b:a);
-  const wettest=validRain.reduce((a,b)=>b[1].rain>a[1].rain?b:a);
-  const mostHumid=validHumidity.reduce((a,b)=>b[1].humidity>a[1].humidity?b:a);
+  function recordList(items,valueFormatter){
+    return `<ol class="record-list">${items.map(([date,data],index)=>`
+      <li><button class="record-link" onclick="kargatuEguna('${date}')">
+        ${index+1}. ${valueFormatter(data)} · ${formatDate(date)}
+      </button></li>`).join("")}</ol>`;
+  }
 
   document.getElementById("errekorrakEmaitza").innerHTML=`
-    <table>
-      <tr><th>Errekorra</th><th>Balioa</th><th>Data</th><th>Estazioa</th></tr>
-      <tr><td>🔥 Egun beroena</td><td><strong>${hottest[1].max} °C</strong></td><td>${formatDate(hottest[0])}</td><td>${hottest[1].station}</td></tr>
-      <tr><td>🥶 Egun hotzena</td><td><strong>${coldest[1].min} °C</strong></td><td>${formatDate(coldest[0])}</td><td>${coldest[1].station}</td></tr>
-      <tr><td>🌧️ Egun euritsuena</td><td><strong>${wettest[1].rain} mm</strong></td><td>${formatDate(wettest[0])}</td><td>${wettest[1].station}</td></tr>
-      <tr><td>💧 Hezetasun handiena</td><td><strong>${humidityLabel(mostHumid[1].humidity)}</strong></td><td>${formatDate(mostHumid[0])}</td><td>${mostHumid[1].station}</td></tr>
-    </table>`;
+    <div class="records-grid">
+      <article class="record-card"><h3>🔥 10 egun beroenak</h3>${recordList(validMax,d=>`${d.max} °C`)}</article>
+      <article class="record-card"><h3>🥶 10 egun hotzenak</h3>${recordList(validMin,d=>`${d.min} °C`)}</article>
+      <article class="record-card"><h3>🌧️ 10 egun euritsuenak</h3>${recordList(validRain,d=>`${d.rain} mm`)}</article>
+    </div>`;
+}
+
+function kargatuEguna(date){
+  input.value=date;
+  bilatu();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 beteUrteak();
