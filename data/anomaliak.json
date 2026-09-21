@@ -3,11 +3,11 @@
     "iturria": "Euskalmet / Euskadi Open Data",
     "estazioa": "Alegia",
     "kodea": "C0E9",
-    "sortua_utc": "2026-09-14T12:50:31Z",
+    "sortua_utc": "2026-09-21T12:53:34Z",
     "lehen_data": "2012-01-01",
-    "azken_data": "2026-06-30",
-    "egun_kopurua": 5258,
-    "anomalia_kopurua": 81642,
+    "azken_data": "2026-08-31",
+    "egun_kopurua": 5320,
+    "anomalia_kopurua": 81905,
     "script_bertsioa": "3.1",
     "lau_estazioen_txostena": "tmp/lau_estazioen_konparazioa.csv",
     "lau_estazioen_egoera_kopuruak": {
@@ -489887,6 +489887,1584 @@
     },
     {
       "data": "2026-06-30",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-04",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-07",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-07",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-26",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 37.84,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 37.95,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 37.78,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 38.34,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 38.43,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 38.58,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 38.91,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 39.2,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 39.32,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 39.66,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 39.92,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 39.48,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 38.7,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 37.9,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-07-28",
+      "aldagaia": "tenperatura",
+      "balioa": 37.7,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-08-08",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-08",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-08",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-08",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-08",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-08",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-08",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-08",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-08",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.6,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.6,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-09",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.6,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.6,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.6,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.6,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.6,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.6,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.9,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.9,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.9,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.9,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.8,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.9,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.9,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.9,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.9,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.6,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.7,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-10",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-11",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-16",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-23",
+      "aldagaia": "tenperatura",
+      "balioa": 36.42,
+      "arrazoia": "eguneko medianatik gehiegi aldenduta"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.1,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.2,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.3,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.6,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.5,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
+      "aldagaia": "hezetasuna",
+      "balioa": 100.4,
+      "arrazoia": "0–100 % tartetik kanpo"
+    },
+    {
+      "data": "2026-08-24",
       "aldagaia": "hezetasuna",
       "balioa": 100.1,
       "arrazoia": "0–100 % tartetik kanpo"
