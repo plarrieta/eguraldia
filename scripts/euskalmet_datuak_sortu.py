@@ -138,50 +138,49 @@ def direct_url(year, month):
 
 
 def discover_urls(year):
+    """Indizeko XMLak aurkitu eta aurtengo falta diren hilabeteak egiaztatu."""
+    indexed = set()
 
     for url in index_urls(year):
-
         content = fetch_text(url)
-
         if not content:
             continue
 
-        found = {
+        indexed = {
             u.rstrip(",;)")
-            for u in re.findall(
-                r"https?://[^\s\"'<>]+",
-                content
-            )
+            for u in re.findall(r"https?://[^\s\"'<>]+", content)
             if STATION_CODE.lower() in u.lower()
             and u.lower().endswith(".xml")
             and not u.lower().endswith(".xsd")
         }
+        if indexed:
+            break
 
-        if found:
+    def month_of(url):
+        match = re.search(rf"{year}_(\d+)\.xml$", url, re.I)
+        return int(match.group(1)) if match else None
 
-            def key(u):
-                match = re.search(
-                    rf"{year}_(\d+)\.xml$",
-                    u,
-                    re.I
-                )
+    found = set(indexed)
+    indexed_months = {month_of(url) for url in indexed}
 
-                return int(match.group(1)) if match else 99
+    # Urte historikoetan indizeak funtzionatzen badu, ez dugu
+    # alferrik sareko dozenaka eskaera gehiago egingo.
+    # Aurtengo indizea, ordea, atzeratuta egon daiteke.
+    if year == date.today().year or not indexed:
+        last_month = date.today().month if year == date.today().year else 12
+        for month in range(1, last_month + 1):
+            if month in indexed_months:
+                continue
+            url = direct_url(year, month)
+            if fetch_bytes(url) is not None:
+                found.add(url)
+                print(f"  {year}-{month:02d}: XML zuzenean aurkituta")
+            time.sleep(0.05)
 
-            return sorted(found, key=key)
-
-    found = []
-
-    for month in range(1, 13):
-
-        url = direct_url(year, month)
-
-        if fetch_bytes(url) is not None:
-            found.append(url)
-
-        time.sleep(0.05)
-
-    return found
+    result = sorted(found, key=lambda url: (month_of(url) or 99, url))
+    months = sorted({month_of(url) for url in result if month_of(url) is not None})
+    print(f"  {year}ko hilabete aurkituak: {', '.join(f'{m:02d}' for m in months) or 'bat ere ez'}")
+    return result
 
 
 # ============================================================
@@ -782,6 +781,8 @@ def main():
         "Lau estazioen arabera baztertutako egunak: "
         f"{len(excluded_dates)}"
     )
+
+    print(f"Eskuragarri dagoen azken eguna: {meta['azken_data']}")
 
 
 if __name__ == "__main__":
