@@ -1,0 +1,30 @@
+
+name: Euskalmet API proba
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probatu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Biltegia jaitsi
+        uses: actions/checkout@v4
+
+      - name: Python prestatu
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cryptography instalatu
+        run: python -m pip install cryptography
+
+      - name: Euskalmet API probatu
+        env:
+          EUSKALMET_PRIVATE_KEY: ${{ secrets.EUSKALMET_PRIVATE_KEY }}
+          EUSKALMET_FINGERPRINT: ${{ secrets.EUSKALMET_FINGERPRINT }}
+        run: python scripts/euskalmet_api_proba.py
