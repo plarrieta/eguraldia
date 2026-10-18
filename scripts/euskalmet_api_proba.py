@@ -12,11 +12,6 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 
 
-# ==========================================
-# EUSKALMET API - KONEXIO PROBA
-# Alegia (C0E9) - 2026/09/03
-# ==========================================
-
 API_URL = (
     "https://api.euskadi.eus/euskalmet/"
     "readings/aggregated/summarized/byDay/"
@@ -28,18 +23,7 @@ def b64url(data):
     return base64.urlsafe_b64encode(data).rstrip(b"=").decode("ascii")
 
 
-def encode_json(obj):
-    raw = json.dumps(
-        obj,
-        separators=(",", ":")
-    ).encode("utf-8")
-
-    return b64url(raw)
-
-
 def main():
-
-    # GitHub Secrets irakurri
     private_pem = os.environ.get(
         "EUSKALMET_PRIVATE_KEY", ""
     ).replace("\\n", "\n")
@@ -49,23 +33,16 @@ def main():
     ).strip()
 
     if not private_pem or not fingerprint:
-        raise RuntimeError(
-            "Euskalmeten gako pribatua edo fingerprint-a falta da."
-        )
+        raise RuntimeError("GitHub Secrets falta dira.")
 
-    # Gako pribatua kargatu
     private_key = serialization.load_pem_private_key(
         private_pem.encode("utf-8"),
         password=None
     )
 
-    # JWT tokena sortu
     now = int(time.time())
 
-    header = {
-        "alg": "RS256",
-        "typ": "JWT"
-    }
+    header = {"alg": "RS256", "typ": "JWT"}
 
     payload = {
         "aud": "met01.apikey",
@@ -76,11 +53,13 @@ def main():
         "loginId": fingerprint
     }
 
-    unsigned = (
-        encode_json(header)
-        + "."
-        + encode_json(payload)
-    )
+    def encode(obj):
+        raw = json.dumps(
+            obj, separators=(",", ":")
+        ).encode("utf-8")
+        return b64url(raw)
+
+    unsigned = encode(header) + "." + encode(payload)
 
     signature = private_key.sign(
         unsigned.encode("ascii"),
@@ -90,7 +69,6 @@ def main():
 
     token = unsigned + "." + b64url(signature)
 
-    # Euskalmeten APIari eskaera egin
     request = urllib.request.Request(
         API_URL,
         headers={
@@ -99,42 +77,35 @@ def main():
         }
     )
 
-    print("Estazioa: Alegia (C0E9)")
-    print("Eskatutako eguna: 2026-09-03")
-
     try:
         with urllib.request.urlopen(
-            request,
-            timeout=30
+            request, timeout=30
         ) as response:
-
+            data = json.load(response)
             print("HTTP:", response.status)
-            print("APIaren erantzuna:")
-
-            result = response.read().decode("utf-8")
-
-            try:
-                parsed = json.loads(result)
-                print(json.dumps(
-                    parsed,
-                    ensure_ascii=False,
-                    indent=2
-                )[:6000])
-            except json.JSONDecodeError:
-                print(result[:2000])
 
     except urllib.error.HTTPError as exc:
-
         print("HTTP:", exc.code)
-        print("APIaren errorea:")
-        print(exc.read().decode("utf-8")[:2000])
-
+        print(exc.read().decode("utf-8")[:1000])
         raise SystemExit(1)
 
-    except urllib.error.URLError as exc:
+    print("ESTAZIOA:", data.get("station"))
+    print("DATA:", data.get("date"))
+    print()
+    print("NEURKETA MOTA GUZTIAK:")
+    print("------------------------")
 
-        print("Konexio-errorea:", exc.reason)
-        raise SystemExit(1)
+    items = data.get("items", [])
+
+    for item in items:
+        print(
+            "MOTA:", item.get("measureType"),
+            "| NEURKETA:", item.get("measureId"),
+            "| SENTSOREA:", item.get("sensorId")
+        )
+
+    print("------------------------")
+    print("GUZTIRA:", len(items), "neurketa")
 
 
 if __name__ == "__main__":
