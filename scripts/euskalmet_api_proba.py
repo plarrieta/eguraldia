@@ -67,8 +67,7 @@ def main():
 
     token = unsigned + "." + b64url(signature)
 
-    url = "https://api.euskadi.eus/euskalmet/stations/C0E9"
-
+url = "https://api.euskadi.eus/euskalmet/readings/aggregated/summarized/byDay/forStation/C0E9/at/2026/09/03"
     request = urllib.request.Request(
         url,
         headers={
