@@ -15,7 +15,7 @@ from cryptography.hazmat.primitives.asymmetric import padding
 API_URL = (
     "https://api.euskadi.eus/euskalmet/"
     "readings/aggregated/summarized/byDay/"
-    "forStation/C0E9/at/2026/09/03"
+    "forStation/C0E9/at/2026/10/15"
 )
 
 
