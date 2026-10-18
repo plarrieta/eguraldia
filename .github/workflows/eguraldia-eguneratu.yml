@@ -30,9 +30,9 @@ jobs:
         run: python -m pip install cryptography
 
       - name: Euskalmet datuak sortu
-        env:
-          EUSKALMET_PRIVATE_KEY: $&#123;&#123; secrets.EUSKALMET_PRIVATE_KEY &#125;&#125;
-          EUSKALMET_FINGERPRINT: $&#123;&#123; secrets.EUSKALMET_FINGERPRINT &#125;&#125;
+        env:     
+        EUSKALMET_PRIVATE_KEY: ${{ secrets.EUSKALMET_PRIVATE_KEY }}
+        EUSKALMET_FINGERPRINT: ${{ secrets.EUSKALMET_FINGERPRINT }}
         run: python scripts/euskalmet_datuak_sortu_BERRIA.py
 
       - name: Aldaketak GitHubera igo
