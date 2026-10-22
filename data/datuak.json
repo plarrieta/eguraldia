@@ -3,13 +3,13 @@
     "iturria": "Euskalmet / Euskadi Open Data",
     "estazioa": "Alegia",
     "kodea": "C0E9",
-    "sortua_utc": "2026-10-21T11:50:30Z",
+    "sortua_utc": "2026-10-22T11:52:02Z",
     "lehen_data": "2012-01-01",
-    "azken_data": "2026-10-20",
-    "egun_kopurua": 5370,
+    "azken_data": "2026-10-21",
+    "egun_kopurua": 5371,
     "anomalia_kopurua": 81905,
     "script_bertsioa": "3.2",
-    "api_gehitutako_egunak": 50,
+    "api_gehitutako_egunak": 51,
     "lau_estazioen_txostena": "tmp/lau_estazioen_konparazioa.csv",
     "lau_estazioen_egoera_kopuruak": {
       "EGUN_AKASTUNA": 25,
@@ -48348,6 +48348,15 @@
       "min": 8.9,
       "euria": null,
       "hezetasuna": 88.8
+    },
+    {
+      "data": "2026-10-21",
+      "estazioa": "Alegia",
+      "kodea": "C0E9",
+      "max": 16.5,
+      "min": 7.2,
+      "euria": null,
+      "hezetasuna": 90.9
     }
   ]
 }
