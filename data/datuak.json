@@ -3,13 +3,13 @@
     "iturria": "Euskalmet / Euskadi Open Data",
     "estazioa": "Alegia",
     "kodea": "C0E9",
-    "sortua_utc": "2026-11-02T15:47:47Z",
+    "sortua_utc": "2026-11-03T14:18:28Z",
     "lehen_data": "2012-01-01",
-    "azken_data": "2026-11-01",
-    "egun_kopurua": 5382,
-    "anomalia_kopurua": 81905,
+    "azken_data": "2026-11-02",
+    "egun_kopurua": 5171,
+    "anomalia_kopurua": 73349,
     "script_bertsioa": "3.2",
-    "api_gehitutako_egunak": 62,
+    "api_gehitutako_egunak": 33,
     "lau_estazioen_txostena": "tmp/lau_estazioen_konparazioa.csv",
     "lau_estazioen_egoera_kopuruak": {
       "EGUN_AKASTUNA": 25,
@@ -1107,285 +1107,6 @@
       "min": 6.9,
       "euria": 5.2,
       "hezetasuna": 83.1
-    },
-    {
-      "data": "2012-05-01",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 21.1,
-      "min": 5.6,
-      "euria": 1.8,
-      "hezetasuna": 65.7
-    },
-    {
-      "data": "2012-05-02",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 25.5,
-      "min": 6.7,
-      "euria": 0.0,
-      "hezetasuna": 66.4
-    },
-    {
-      "data": "2012-05-03",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 26.3,
-      "min": 9.3,
-      "euria": 2.4,
-      "hezetasuna": 70.6
-    },
-    {
-      "data": "2012-05-04",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 21.9,
-      "min": 9.5,
-      "euria": 0.1,
-      "hezetasuna": 57.6
-    },
-    {
-      "data": "2012-05-05",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 21.3,
-      "min": 9.6,
-      "euria": 3.4,
-      "hezetasuna": 68.8
-    },
-    {
-      "data": "2012-05-06",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 19.4,
-      "min": 8.1,
-      "euria": 3.0,
-      "hezetasuna": 87.0
-    },
-    {
-      "data": "2012-05-07",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 26.6,
-      "min": 7.4,
-      "euria": 1.5,
-      "hezetasuna": 72.2
-    },
-    {
-      "data": "2012-05-08",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 27.4,
-      "min": 13.7,
-      "euria": 14.5,
-      "hezetasuna": 66.4
-    },
-    {
-      "data": "2012-05-09",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 31.2,
-      "min": 12.6,
-      "euria": 0.0,
-      "hezetasuna": 62.6
-    },
-    {
-      "data": "2012-05-10",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 35.0,
-      "min": 14.2,
-      "euria": 0.0,
-      "hezetasuna": 65.5
-    },
-    {
-      "data": "2012-05-11",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 27.3,
-      "min": 14.2,
-      "euria": 0.0,
-      "hezetasuna": 79.3
-    },
-    {
-      "data": "2012-05-12",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.9,
-      "min": 12.6,
-      "euria": 0.4,
-      "hezetasuna": 94.6
-    },
-    {
-      "data": "2012-05-13",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 19.6,
-      "min": 9.0,
-      "euria": 0.0,
-      "hezetasuna": 78.0
-    },
-    {
-      "data": "2012-05-14",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 20.9,
-      "min": 8.5,
-      "euria": 0.0,
-      "hezetasuna": 78.4
-    },
-    {
-      "data": "2012-05-15",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.8,
-      "min": 6.6,
-      "euria": 0.0,
-      "hezetasuna": 77.5
-    },
-    {
-      "data": "2012-05-16",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 20.5,
-      "min": 7.8,
-      "euria": 0.0,
-      "hezetasuna": 69.2
-    },
-    {
-      "data": "2012-05-17",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 27.4,
-      "min": 10.1,
-      "euria": 0.0,
-      "hezetasuna": 72.7
-    },
-    {
-      "data": "2012-05-18",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.9,
-      "min": 11.3,
-      "euria": 4.1,
-      "hezetasuna": 85.3
-    },
-    {
-      "data": "2012-05-19",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.4,
-      "min": 11.4,
-      "euria": 22.1,
-      "hezetasuna": 99.9
-    },
-    {
-      "data": "2012-05-20",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.7,
-      "min": 9.5,
-      "euria": 19.1,
-      "hezetasuna": 99.8
-    },
-    {
-      "data": "2012-05-21",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.7,
-      "min": 9.0,
-      "euria": 20.9,
-      "hezetasuna": 96.7
-    },
-    {
-      "data": "2012-05-22",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.5,
-      "min": 9.8,
-      "euria": 9.8,
-      "hezetasuna": 90.9
-    },
-    {
-      "data": "2012-05-23",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 21.3,
-      "min": 9.6,
-      "euria": 0.2,
-      "hezetasuna": 81.6
-    },
-    {
-      "data": "2012-05-24",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 25.0,
-      "min": 11.9,
-      "euria": 0.0,
-      "hezetasuna": 82.4
-    },
-    {
-      "data": "2012-05-25",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 34.8,
-      "min": 15.1,
-      "euria": 0.0,
-      "hezetasuna": 63.3
-    },
-    {
-      "data": "2012-05-26",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 21.2,
-      "min": 12.9,
-      "euria": 0.0,
-      "hezetasuna": 71.3
-    },
-    {
-      "data": "2012-05-27",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 22.8,
-      "min": 9.5,
-      "euria": 0.0,
-      "hezetasuna": 76.7
-    },
-    {
-      "data": "2012-05-28",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 24.1,
-      "min": 10.7,
-      "euria": 0.0,
-      "hezetasuna": 78.5
-    },
-    {
-      "data": "2012-05-29",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 31.9,
-      "min": 11.4,
-      "euria": 0.0,
-      "hezetasuna": 73.3
-    },
-    {
-      "data": "2012-05-30",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 22.6,
-      "min": 12.9,
-      "euria": 0.0,
-      "hezetasuna": 80.4
-    },
-    {
-      "data": "2012-05-31",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 23.8,
-      "min": 14.6,
-      "euria": 0.0,
-      "hezetasuna": 85.8
     },
     {
       "data": "2012-06-01",
@@ -25472,834 +25193,6 @@
       "hezetasuna": 98.9
     },
     {
-      "data": "2019-11-01",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 23.2,
-      "min": 14.1,
-      "euria": 16.1,
-      "hezetasuna": 98.5
-    },
-    {
-      "data": "2019-11-02",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.6,
-      "min": 13.4,
-      "euria": 11.6,
-      "hezetasuna": 90.5
-    },
-    {
-      "data": "2019-11-03",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.7,
-      "min": 11.2,
-      "euria": 6.3,
-      "hezetasuna": 79.6
-    },
-    {
-      "data": "2019-11-04",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.8,
-      "min": 10.0,
-      "euria": 8.1,
-      "hezetasuna": 90.5
-    },
-    {
-      "data": "2019-11-05",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 11.3,
-      "min": 7.0,
-      "euria": 23.9,
-      "hezetasuna": 99.0
-    },
-    {
-      "data": "2019-11-06",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.2,
-      "min": 9.6,
-      "euria": 6.4,
-      "hezetasuna": 97.2
-    },
-    {
-      "data": "2019-11-07",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.0,
-      "min": 4.6,
-      "euria": 11.4,
-      "hezetasuna": 89.6
-    },
-    {
-      "data": "2019-11-08",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 9.6,
-      "min": 4.8,
-      "euria": 46.7,
-      "hezetasuna": 99.5
-    },
-    {
-      "data": "2019-11-09",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.8,
-      "min": 7.4,
-      "euria": 26.9,
-      "hezetasuna": 98.7
-    },
-    {
-      "data": "2019-11-10",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.4,
-      "min": 5.5,
-      "euria": 23.2,
-      "hezetasuna": 99.4
-    },
-    {
-      "data": "2019-11-11",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.9,
-      "min": 5.6,
-      "euria": 7.8,
-      "hezetasuna": 98.9
-    },
-    {
-      "data": "2019-11-12",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.4,
-      "min": 6.7,
-      "euria": 6.8,
-      "hezetasuna": 98.6
-    },
-    {
-      "data": "2019-11-13",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.8,
-      "min": 8.4,
-      "euria": 5.2,
-      "hezetasuna": 95.8
-    },
-    {
-      "data": "2019-11-14",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.7,
-      "min": 4.9,
-      "euria": 9.1,
-      "hezetasuna": 91.3
-    },
-    {
-      "data": "2019-11-15",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.4,
-      "min": 4.6,
-      "euria": 12.5,
-      "hezetasuna": 98.0
-    },
-    {
-      "data": "2019-11-16",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 8.4,
-      "min": 2.9,
-      "euria": 16.3,
-      "hezetasuna": 99.9
-    },
-    {
-      "data": "2019-11-17",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.7,
-      "min": 6.2,
-      "euria": 10.3,
-      "hezetasuna": 99.7
-    },
-    {
-      "data": "2019-11-18",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 9.8,
-      "min": 6.0,
-      "euria": 6.9,
-      "hezetasuna": 97.0
-    },
-    {
-      "data": "2019-11-19",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.6,
-      "min": 4.4,
-      "euria": 0.1,
-      "hezetasuna": 97.4
-    },
-    {
-      "data": "2019-11-20",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.9,
-      "min": 2.9,
-      "euria": 0.0,
-      "hezetasuna": 87.9
-    },
-    {
-      "data": "2019-11-21",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.8,
-      "min": 4.0,
-      "euria": 0.0,
-      "hezetasuna": 90.8
-    },
-    {
-      "data": "2019-11-22",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.9,
-      "min": 4.8,
-      "euria": 1.6,
-      "hezetasuna": 78.2
-    },
-    {
-      "data": "2019-11-23",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.2,
-      "min": 8.4,
-      "euria": 33.5,
-      "hezetasuna": 97.8
-    },
-    {
-      "data": "2019-11-24",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.8,
-      "min": 8.0,
-      "euria": 11.5,
-      "hezetasuna": 97.5
-    },
-    {
-      "data": "2019-11-25",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.5,
-      "min": 7.0,
-      "euria": 0.2,
-      "hezetasuna": 97.4
-    },
-    {
-      "data": "2019-11-26",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 19.5,
-      "min": 8.2,
-      "euria": 0.1,
-      "hezetasuna": 71.2
-    },
-    {
-      "data": "2019-11-27",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.5,
-      "min": 7.5,
-      "euria": 0.6,
-      "hezetasuna": 81.4
-    },
-    {
-      "data": "2019-11-28",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.6,
-      "min": 7.0,
-      "euria": 3.6,
-      "hezetasuna": 99.4
-    },
-    {
-      "data": "2019-11-29",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.3,
-      "min": 6.7,
-      "euria": 0.3,
-      "hezetasuna": 93.8
-    },
-    {
-      "data": "2019-11-30",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.0,
-      "min": 6.5,
-      "euria": 16.1,
-      "hezetasuna": 99.5
-    },
-    {
-      "data": "2019-12-01",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.0,
-      "min": 5.7,
-      "euria": 2.4,
-      "hezetasuna": 93.1
-    },
-    {
-      "data": "2019-12-02",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.5,
-      "min": 6.2,
-      "euria": 1.2,
-      "hezetasuna": 98.9
-    },
-    {
-      "data": "2019-12-03",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 8.1,
-      "min": 2.2,
-      "euria": 1.0,
-      "hezetasuna": 97.7
-    },
-    {
-      "data": "2019-12-04",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.0,
-      "min": 2.1,
-      "euria": 0.1,
-      "hezetasuna": 97.8
-    },
-    {
-      "data": "2019-12-05",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.2,
-      "min": 4.6,
-      "euria": 0.0,
-      "hezetasuna": 92.6
-    },
-    {
-      "data": "2019-12-06",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.3,
-      "min": 4.5,
-      "euria": 0.0,
-      "hezetasuna": 95.7
-    },
-    {
-      "data": "2019-12-07",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.8,
-      "min": 4.3,
-      "euria": 0.0,
-      "hezetasuna": 94.7
-    },
-    {
-      "data": "2019-12-08",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 11.2,
-      "min": 4.6,
-      "euria": 6.7,
-      "hezetasuna": 99.1
-    },
-    {
-      "data": "2019-12-09",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.2,
-      "min": 6.8,
-      "euria": 4.3,
-      "hezetasuna": 88.3
-    },
-    {
-      "data": "2019-12-10",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.4,
-      "min": 6.8,
-      "euria": 0.1,
-      "hezetasuna": 98.7
-    },
-    {
-      "data": "2019-12-11",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.3,
-      "min": 5.6,
-      "euria": 10.8,
-      "hezetasuna": 99.6
-    },
-    {
-      "data": "2019-12-12",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.6,
-      "min": 7.2,
-      "euria": 36.4,
-      "hezetasuna": null
-    },
-    {
-      "data": "2019-12-13",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.6,
-      "min": 10.6,
-      "euria": 12.6,
-      "hezetasuna": 93.3
-    },
-    {
-      "data": "2019-12-14",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.2,
-      "min": 8.6,
-      "euria": 0.0,
-      "hezetasuna": 90.7
-    },
-    {
-      "data": "2019-12-15",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.7,
-      "min": 8.1,
-      "euria": 0.0,
-      "hezetasuna": 72.2
-    },
-    {
-      "data": "2019-12-16",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.5,
-      "min": 8.0,
-      "euria": 0.0,
-      "hezetasuna": 61.4
-    },
-    {
-      "data": "2019-12-17",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.1,
-      "min": 7.5,
-      "euria": 2.1,
-      "hezetasuna": 87.2
-    },
-    {
-      "data": "2019-12-18",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.6,
-      "min": 5.2,
-      "euria": 0.0,
-      "hezetasuna": 56.9
-    },
-    {
-      "data": "2019-12-19",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 19.1,
-      "min": 10.5,
-      "euria": 0.1,
-      "hezetasuna": 61.8
-    },
-    {
-      "data": "2019-12-20",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.5,
-      "min": 9.3,
-      "euria": 12.0,
-      "hezetasuna": 89.1
-    },
-    {
-      "data": "2019-12-21",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 20.9,
-      "min": 7.5,
-      "euria": 0.5,
-      "hezetasuna": 71.2
-    },
-    {
-      "data": "2019-12-22",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.4,
-      "min": 7.2,
-      "euria": 9.9,
-      "hezetasuna": 97.2
-    },
-    {
-      "data": "2019-12-23",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.1,
-      "min": 6.2,
-      "euria": 0.2,
-      "hezetasuna": 95.8
-    },
-    {
-      "data": "2019-12-24",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.3,
-      "min": 4.7,
-      "euria": 0.0,
-      "hezetasuna": 98.4
-    },
-    {
-      "data": "2019-12-25",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.5,
-      "min": 5.8,
-      "euria": 0.0,
-      "hezetasuna": 97.7
-    },
-    {
-      "data": "2019-12-26",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.7,
-      "min": 2.8,
-      "euria": 0.0,
-      "hezetasuna": 95.4
-    },
-    {
-      "data": "2019-12-27",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.4,
-      "min": 1.4,
-      "euria": 0.0,
-      "hezetasuna": 98.4
-    },
-    {
-      "data": "2019-12-28",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.8,
-      "min": 1.2,
-      "euria": 0.0,
-      "hezetasuna": 98.4
-    },
-    {
-      "data": "2019-12-29",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.0,
-      "min": 1.2,
-      "euria": 0.0,
-      "hezetasuna": 96.9
-    },
-    {
-      "data": "2019-12-30",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.8,
-      "min": -0.6,
-      "euria": 0.0,
-      "hezetasuna": 95.7
-    },
-    {
-      "data": "2019-12-31",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.3,
-      "min": -1.1,
-      "euria": 0.0,
-      "hezetasuna": 98.7
-    },
-    {
-      "data": "2020-01-01",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.7,
-      "min": 0.5,
-      "euria": 0.0,
-      "hezetasuna": 95.7
-    },
-    {
-      "data": "2020-01-02",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.8,
-      "min": 0.0,
-      "euria": 0.0,
-      "hezetasuna": 98.1
-    },
-    {
-      "data": "2020-01-03",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 7.5,
-      "min": -0.5,
-      "euria": 0.1,
-      "hezetasuna": 96.9
-    },
-    {
-      "data": "2020-01-04",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.5,
-      "min": 5.1,
-      "euria": 3.5,
-      "hezetasuna": 99.5
-    },
-    {
-      "data": "2020-01-05",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.0,
-      "min": 4.0,
-      "euria": 0.0,
-      "hezetasuna": 98.2
-    },
-    {
-      "data": "2020-01-06",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.9,
-      "min": 2.2,
-      "euria": 0.0,
-      "hezetasuna": 92.1
-    },
-    {
-      "data": "2020-01-07",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.2,
-      "min": 1.9,
-      "euria": 0.0,
-      "hezetasuna": 97.4
-    },
-    {
-      "data": "2020-01-08",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.7,
-      "min": 3.4,
-      "euria": 0.0,
-      "hezetasuna": 97.8
-    },
-    {
-      "data": "2020-01-09",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.8,
-      "min": 4.1,
-      "euria": 2.0,
-      "hezetasuna": 82.5
-    },
-    {
-      "data": "2020-01-10",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.8,
-      "min": 6.5,
-      "euria": 8.9,
-      "hezetasuna": 98.9
-    },
-    {
-      "data": "2020-01-11",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.3,
-      "min": 2.4,
-      "euria": 0.0,
-      "hezetasuna": 98.6
-    },
-    {
-      "data": "2020-01-12",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.7,
-      "min": 0.6,
-      "euria": 0.0,
-      "hezetasuna": 97.4
-    },
-    {
-      "data": "2020-01-13",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.5,
-      "min": 0.9,
-      "euria": 0.0,
-      "hezetasuna": 84.2
-    },
-    {
-      "data": "2020-01-14",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.4,
-      "min": 3.5,
-      "euria": 0.0,
-      "hezetasuna": 70.0
-    },
-    {
-      "data": "2020-01-15",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.4,
-      "min": 3.6,
-      "euria": 0.0,
-      "hezetasuna": 72.0
-    },
-    {
-      "data": "2020-01-16",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.7,
-      "min": 3.2,
-      "euria": 0.0,
-      "hezetasuna": 72.9
-    },
-    {
-      "data": "2020-01-17",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.3,
-      "min": 4.2,
-      "euria": 1.7,
-      "hezetasuna": 89.5
-    },
-    {
-      "data": "2020-01-18",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.6,
-      "min": 3.4,
-      "euria": 12.9,
-      "hezetasuna": 75.8
-    },
-    {
-      "data": "2020-01-19",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 9.1,
-      "min": 4.5,
-      "euria": 2.9,
-      "hezetasuna": 76.7
-    },
-    {
-      "data": "2020-01-20",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 6.1,
-      "min": 0.8,
-      "euria": 0.0,
-      "hezetasuna": 82.0
-    },
-    {
-      "data": "2020-01-21",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 5.0,
-      "min": 0.1,
-      "euria": 0.0,
-      "hezetasuna": 97.7
-    },
-    {
-      "data": "2020-01-22",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.7,
-      "min": 4.6,
-      "euria": 0.0,
-      "hezetasuna": 94.5
-    },
-    {
-      "data": "2020-01-23",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.4,
-      "min": 3.8,
-      "euria": 0.9,
-      "hezetasuna": 99.2
-    },
-    {
-      "data": "2020-01-24",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.5,
-      "min": 4.4,
-      "euria": 0.0,
-      "hezetasuna": 85.8
-    },
-    {
-      "data": "2020-01-25",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.2,
-      "min": 4.5,
-      "euria": 0.8,
-      "hezetasuna": 91.6
-    },
-    {
-      "data": "2020-01-26",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.2,
-      "min": 3.8,
-      "euria": 1.0,
-      "hezetasuna": 89.5
-    },
-    {
-      "data": "2020-01-27",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.8,
-      "min": 3.5,
-      "euria": 0.4,
-      "hezetasuna": 80.5
-    },
-    {
-      "data": "2020-01-28",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.9,
-      "min": 4.4,
-      "euria": 0.0,
-      "hezetasuna": 84.5
-    },
-    {
-      "data": "2020-01-29",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.4,
-      "min": 4.4,
-      "euria": 4.7,
-      "hezetasuna": 88.2
-    },
-    {
-      "data": "2020-01-30",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 19.1,
-      "min": 10.5,
-      "euria": 3.4,
-      "hezetasuna": 76.9
-    },
-    {
-      "data": "2020-01-31",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 22.1,
-      "min": 7.8,
-      "euria": 0.1,
-      "hezetasuna": 83.8
-    },
-    {
       "data": "2020-02-01",
       "estazioa": "Alegia",
       "kodea": "C0E9",
@@ -32285,285 +31178,6 @@
       "hezetasuna": 98.9
     },
     {
-      "data": "2021-12-01",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.0,
-      "min": 6.2,
-      "euria": 11.5,
-      "hezetasuna": 98.8
-    },
-    {
-      "data": "2021-12-02",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.1,
-      "min": 5.4,
-      "euria": 37.8,
-      "hezetasuna": 96.1
-    },
-    {
-      "data": "2021-12-03",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 9.5,
-      "min": 6.7,
-      "euria": 9.3,
-      "hezetasuna": 98.5
-    },
-    {
-      "data": "2021-12-04",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.8,
-      "min": 6.6,
-      "euria": 15.5,
-      "hezetasuna": 98.4
-    },
-    {
-      "data": "2021-12-05",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.1,
-      "min": 5.1,
-      "euria": 26.8,
-      "hezetasuna": 95.0
-    },
-    {
-      "data": "2021-12-06",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.7,
-      "min": 5.3,
-      "euria": 10.8,
-      "hezetasuna": 99.1
-    },
-    {
-      "data": "2021-12-07",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.4,
-      "min": 6.2,
-      "euria": 13.4,
-      "hezetasuna": 97.4
-    },
-    {
-      "data": "2021-12-08",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 8.9,
-      "min": 3.4,
-      "euria": 2.3,
-      "hezetasuna": 95.8
-    },
-    {
-      "data": "2021-12-09",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.2,
-      "min": 4.2,
-      "euria": 47.5,
-      "hezetasuna": 99.0
-    },
-    {
-      "data": "2021-12-10",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.2,
-      "min": 8.9,
-      "euria": 65.1,
-      "hezetasuna": 96.8
-    },
-    {
-      "data": "2021-12-11",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.8,
-      "min": 9.2,
-      "euria": 14.4,
-      "hezetasuna": 98.8
-    },
-    {
-      "data": "2021-12-12",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.4,
-      "min": 6.4,
-      "euria": 0.5,
-      "hezetasuna": 99.1
-    },
-    {
-      "data": "2021-12-13",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.8,
-      "min": 3.6,
-      "euria": 0.0,
-      "hezetasuna": 98.6
-    },
-    {
-      "data": "2021-12-14",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.8,
-      "min": 2.6,
-      "euria": 0.0,
-      "hezetasuna": 99.1
-    },
-    {
-      "data": "2021-12-15",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.5,
-      "min": 1.9,
-      "euria": 0.0,
-      "hezetasuna": 99.2
-    },
-    {
-      "data": "2021-12-16",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.3,
-      "min": 1.7,
-      "euria": 0.0,
-      "hezetasuna": 99.1
-    },
-    {
-      "data": "2021-12-17",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.3,
-      "min": 0.8,
-      "euria": 0.0,
-      "hezetasuna": 95.5
-    },
-    {
-      "data": "2021-12-18",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.5,
-      "min": 1.1,
-      "euria": 0.0,
-      "hezetasuna": 98.2
-    },
-    {
-      "data": "2021-12-19",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 11.2,
-      "min": 0.6,
-      "euria": 0.0,
-      "hezetasuna": 97.7
-    },
-    {
-      "data": "2021-12-20",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 9.7,
-      "min": -0.1,
-      "euria": 0.0,
-      "hezetasuna": 98.6
-    },
-    {
-      "data": "2021-12-21",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.9,
-      "min": 1.6,
-      "euria": 0.0,
-      "hezetasuna": 99.0
-    },
-    {
-      "data": "2021-12-22",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.0,
-      "min": 2.8,
-      "euria": 0.0,
-      "hezetasuna": 97.1
-    },
-    {
-      "data": "2021-12-23",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.3,
-      "min": 5.9,
-      "euria": 0.0,
-      "hezetasuna": 89.8
-    },
-    {
-      "data": "2021-12-24",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.7,
-      "min": 8.2,
-      "euria": 0.0,
-      "hezetasuna": 87.2
-    },
-    {
-      "data": "2021-12-25",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.6,
-      "min": 5.6,
-      "euria": 0.0,
-      "hezetasuna": 92.1
-    },
-    {
-      "data": "2021-12-26",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.4,
-      "min": 4.9,
-      "euria": 0.5,
-      "hezetasuna": 94.2
-    },
-    {
-      "data": "2021-12-27",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.4,
-      "min": 10.3,
-      "euria": 0.5,
-      "hezetasuna": 78.2
-    },
-    {
-      "data": "2021-12-28",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 19.5,
-      "min": 8.3,
-      "euria": 0.0,
-      "hezetasuna": 80.2
-    },
-    {
-      "data": "2021-12-29",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.1,
-      "min": 6.6,
-      "euria": 0.0,
-      "hezetasuna": 93.1
-    },
-    {
-      "data": "2021-12-30",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.6,
-      "min": 5.0,
-      "euria": 0.0,
-      "hezetasuna": 97.5
-    },
-    {
-      "data": "2021-12-31",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.2,
-      "min": 2.9,
-      "euria": 0.0,
-      "hezetasuna": 96.7
-    },
-    {
       "data": "2022-01-01",
       "estazioa": "Alegia",
       "kodea": "C0E9",
@@ -32841,258 +31455,6 @@
       "min": 4.2,
       "euria": 11.6,
       "hezetasuna": 96.8
-    },
-    {
-      "data": "2022-02-01",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 9.5,
-      "min": 4.8,
-      "euria": 2.8,
-      "hezetasuna": 92.2
-    },
-    {
-      "data": "2022-02-02",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.2,
-      "min": 2.3,
-      "euria": 0.0,
-      "hezetasuna": 92.4
-    },
-    {
-      "data": "2022-02-03",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.4,
-      "min": 1.2,
-      "euria": 0.0,
-      "hezetasuna": 89.3
-    },
-    {
-      "data": "2022-02-04",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 11.7,
-      "min": 1.5,
-      "euria": 2.1,
-      "hezetasuna": 96.3
-    },
-    {
-      "data": "2022-02-05",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 10.8,
-      "min": 0.3,
-      "euria": 9.7,
-      "hezetasuna": 87.8
-    },
-    {
-      "data": "2022-02-06",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 11.9,
-      "min": 0.1,
-      "euria": 0.0,
-      "hezetasuna": 88.5
-    },
-    {
-      "data": "2022-02-07",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 11.7,
-      "min": 4.2,
-      "euria": 1.4,
-      "hezetasuna": 97.5
-    },
-    {
-      "data": "2022-02-08",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.3,
-      "min": 4.6,
-      "euria": 0.1,
-      "hezetasuna": 89.4
-    },
-    {
-      "data": "2022-02-09",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 19.9,
-      "min": 3.2,
-      "euria": 0.0,
-      "hezetasuna": 82.9
-    },
-    {
-      "data": "2022-02-10",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.6,
-      "min": 1.5,
-      "euria": 0.0,
-      "hezetasuna": 86.6
-    },
-    {
-      "data": "2022-02-11",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 11.5,
-      "min": 6.7,
-      "euria": 1.2,
-      "hezetasuna": 93.6
-    },
-    {
-      "data": "2022-02-12",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 16.8,
-      "min": 3.6,
-      "euria": 0.0,
-      "hezetasuna": 87.4
-    },
-    {
-      "data": "2022-02-13",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.1,
-      "min": 3.8,
-      "euria": 0.0,
-      "hezetasuna": 68.5
-    },
-    {
-      "data": "2022-02-14",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 13.7,
-      "min": 3.7,
-      "euria": 6.9,
-      "hezetasuna": 90.6
-    },
-    {
-      "data": "2022-02-15",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.8,
-      "min": 6.0,
-      "euria": 3.3,
-      "hezetasuna": 87.0
-    },
-    {
-      "data": "2022-02-16",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 15.7,
-      "min": 6.1,
-      "euria": 0.1,
-      "hezetasuna": 89.2
-    },
-    {
-      "data": "2022-02-17",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.4,
-      "min": 5.7,
-      "euria": 0.0,
-      "hezetasuna": 90.6
-    },
-    {
-      "data": "2022-02-18",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 19.3,
-      "min": 4.7,
-      "euria": 0.7,
-      "hezetasuna": 90.9
-    },
-    {
-      "data": "2022-02-19",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 12.1,
-      "min": 2.3,
-      "euria": 3.7,
-      "hezetasuna": 90.2
-    },
-    {
-      "data": "2022-02-20",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 11.3,
-      "min": 2.2,
-      "euria": 2.9,
-      "hezetasuna": 98.4
-    },
-    {
-      "data": "2022-02-21",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 14.1,
-      "min": 7.5,
-      "euria": 2.0,
-      "hezetasuna": 89.8
-    },
-    {
-      "data": "2022-02-22",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.1,
-      "min": 2.5,
-      "euria": 0.0,
-      "hezetasuna": 78.9
-    },
-    {
-      "data": "2022-02-23",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 19.4,
-      "min": -0.2,
-      "euria": 0.0,
-      "hezetasuna": 79.2
-    },
-    {
-      "data": "2022-02-24",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 11.4,
-      "min": 2.4,
-      "euria": 0.2,
-      "hezetasuna": 93.0
-    },
-    {
-      "data": "2022-02-25",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 11.9,
-      "min": 1.6,
-      "euria": 1.9,
-      "hezetasuna": 80.3
-    },
-    {
-      "data": "2022-02-26",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.3,
-      "min": -0.6,
-      "euria": 0.0,
-      "hezetasuna": 75.5
-    },
-    {
-      "data": "2022-02-27",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.2,
-      "min": 4.5,
-      "euria": 0.0,
-      "hezetasuna": 79.8
-    },
-    {
-      "data": "2022-02-28",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 21.1,
-      "min": 2.0,
-      "euria": 0.0,
-      "hezetasuna": 80.5
     },
     {
       "data": "2022-03-01",
@@ -33921,276 +32283,6 @@
       "min": 10.2,
       "euria": 0.0,
       "hezetasuna": 70.3
-    },
-    {
-      "data": "2022-06-01",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 31.1,
-      "min": 11.5,
-      "euria": 0.0,
-      "hezetasuna": 73.3
-    },
-    {
-      "data": "2022-06-02",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 25.5,
-      "min": 13.7,
-      "euria": 0.5,
-      "hezetasuna": 83.0
-    },
-    {
-      "data": "2022-06-03",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 22.6,
-      "min": 16.5,
-      "euria": 0.5,
-      "hezetasuna": 85.9
-    },
-    {
-      "data": "2022-06-04",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 20.4,
-      "min": 15.2,
-      "euria": 6.7,
-      "hezetasuna": 92.0
-    },
-    {
-      "data": "2022-06-05",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 23.6,
-      "min": 14.1,
-      "euria": 0.0,
-      "hezetasuna": 80.1
-    },
-    {
-      "data": "2022-06-06",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 25.8,
-      "min": 13.3,
-      "euria": 0.0,
-      "hezetasuna": 77.5
-    },
-    {
-      "data": "2022-06-07",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 23.8,
-      "min": 14.7,
-      "euria": 0.0,
-      "hezetasuna": 82.3
-    },
-    {
-      "data": "2022-06-08",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 19.8,
-      "min": 13.9,
-      "euria": 2.1,
-      "hezetasuna": 93.7
-    },
-    {
-      "data": "2022-06-09",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 22.2,
-      "min": 12.7,
-      "euria": 0.1,
-      "hezetasuna": 81.2
-    },
-    {
-      "data": "2022-06-10",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 27.0,
-      "min": 12.2,
-      "euria": 0.0,
-      "hezetasuna": 76.8
-    },
-    {
-      "data": "2022-06-11",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 23.5,
-      "min": 14.7,
-      "euria": 0.0,
-      "hezetasuna": 85.4
-    },
-    {
-      "data": "2022-06-12",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 29.1,
-      "min": 17.8,
-      "euria": 1.8,
-      "hezetasuna": 87.0
-    },
-    {
-      "data": "2022-06-13",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 27.0,
-      "min": 17.3,
-      "euria": 0.1,
-      "hezetasuna": 84.4
-    },
-    {
-      "data": "2022-06-14",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 35.7,
-      "min": 16.5,
-      "euria": 0.0,
-      "hezetasuna": 81.7
-    },
-    {
-      "data": "2022-06-15",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 31.5,
-      "min": 17.9,
-      "euria": 0.0,
-      "hezetasuna": 78.6
-    },
-    {
-      "data": "2022-06-16",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 34.6,
-      "min": 18.7,
-      "euria": 0.0,
-      "hezetasuna": 78.9
-    },
-    {
-      "data": "2022-06-17",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 38.7,
-      "min": 20.2,
-      "euria": 0.0,
-      "hezetasuna": 75.2
-    },
-    {
-      "data": "2022-06-18",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 37.4,
-      "min": 19.9,
-      "euria": 0.0,
-      "hezetasuna": 69.2
-    },
-    {
-      "data": "2022-06-19",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 26.9,
-      "min": 18.2,
-      "euria": 0.0,
-      "hezetasuna": 73.0
-    },
-    {
-      "data": "2022-06-20",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 20.4,
-      "min": 17.2,
-      "euria": 0.3,
-      "hezetasuna": 92.6
-    },
-    {
-      "data": "2022-06-21",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 24.4,
-      "min": 16.7,
-      "euria": 0.9,
-      "hezetasuna": 88.1
-    },
-    {
-      "data": "2022-06-22",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 24.7,
-      "min": 15.7,
-      "euria": 31.4,
-      "hezetasuna": 84.8
-    },
-    {
-      "data": "2022-06-23",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 26.4,
-      "min": 15.3,
-      "euria": 10.9,
-      "hezetasuna": 86.3
-    },
-    {
-      "data": "2022-06-24",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 27.3,
-      "min": 14.4,
-      "euria": 0.1,
-      "hezetasuna": 74.7
-    },
-    {
-      "data": "2022-06-25",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.6,
-      "min": 13.3,
-      "euria": 4.1,
-      "hezetasuna": 96.5
-    },
-    {
-      "data": "2022-06-26",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.3,
-      "min": 12.9,
-      "euria": 2.3,
-      "hezetasuna": 84.5
-    },
-    {
-      "data": "2022-06-27",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 17.8,
-      "min": 13.9,
-      "euria": 6.7,
-      "hezetasuna": 94.9
-    },
-    {
-      "data": "2022-06-28",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 24.7,
-      "min": 13.7,
-      "euria": 0.0,
-      "hezetasuna": 76.5
-    },
-    {
-      "data": "2022-06-29",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 21.4,
-      "min": 12.6,
-      "euria": 0.2,
-      "hezetasuna": 88.6
-    },
-    {
-      "data": "2022-06-30",
-      "estazioa": "Alegia",
-      "kodea": "C0E9",
-      "max": 18.2,
-      "min": 12.9,
-      "euria": 1.7,
-      "hezetasuna": 89.8
     },
     {
       "data": "2022-07-01",
@@ -47905,7 +45997,7 @@
       "kodea": "C0E9",
       "max": 26.0,
       "min": 14.9,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 81.6
     },
     {
@@ -47914,7 +46006,7 @@
       "kodea": "C0E9",
       "max": 26.4,
       "min": 14.8,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 80.0
     },
     {
@@ -47923,7 +46015,7 @@
       "kodea": "C0E9",
       "max": 31.4,
       "min": 17.7,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 77.1
     },
     {
@@ -47932,7 +46024,7 @@
       "kodea": "C0E9",
       "max": 34.4,
       "min": 14.8,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 76.4
     },
     {
@@ -47941,16 +46033,16 @@
       "kodea": "C0E9",
       "max": 29.5,
       "min": 17.9,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 81.4
     },
     {
       "data": "2026-09-06",
       "estazioa": "Alegia",
       "kodea": "C0E9",
-      "max": 37.5,
+      "max": 36.9,
       "min": 18.9,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 73.8
     },
     {
@@ -47959,7 +46051,7 @@
       "kodea": "C0E9",
       "max": 27.6,
       "min": 17.5,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 83.6
     },
     {
@@ -47968,7 +46060,7 @@
       "kodea": "C0E9",
       "max": 28.7,
       "min": 17.8,
-      "euria": null,
+      "euria": 3.2,
       "hezetasuna": 80.1
     },
     {
@@ -47977,7 +46069,7 @@
       "kodea": "C0E9",
       "max": 21.8,
       "min": 12.5,
-      "euria": null,
+      "euria": 5.4,
       "hezetasuna": 83.7
     },
     {
@@ -47986,7 +46078,7 @@
       "kodea": "C0E9",
       "max": 24.3,
       "min": 11.7,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 77.4
     },
     {
@@ -47995,7 +46087,7 @@
       "kodea": "C0E9",
       "max": 24.1,
       "min": 10.8,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 79.8
     },
     {
@@ -48004,7 +46096,7 @@
       "kodea": "C0E9",
       "max": 25.7,
       "min": 13.7,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 80.1
     },
     {
@@ -48013,7 +46105,7 @@
       "kodea": "C0E9",
       "max": 29.3,
       "min": 13.7,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 80.1
     },
     {
@@ -48022,7 +46114,7 @@
       "kodea": "C0E9",
       "max": 31.8,
       "min": 13.8,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 76.4
     },
     {
@@ -48031,8 +46123,8 @@
       "kodea": "C0E9",
       "max": 27.4,
       "min": 14.3,
-      "euria": null,
-      "hezetasuna": 78.2
+      "euria": 0.3,
+      "hezetasuna": 78.1
     },
     {
       "data": "2026-09-16",
@@ -48040,7 +46132,7 @@
       "kodea": "C0E9",
       "max": 21.0,
       "min": 12.7,
-      "euria": null,
+      "euria": 4.0,
       "hezetasuna": 93.7
     },
     {
@@ -48049,7 +46141,7 @@
       "kodea": "C0E9",
       "max": 21.6,
       "min": 13.1,
-      "euria": null,
+      "euria": 1.2,
       "hezetasuna": 87.3
     },
     {
@@ -48058,7 +46150,7 @@
       "kodea": "C0E9",
       "max": 19.7,
       "min": 12.9,
-      "euria": null,
+      "euria": 0.6,
       "hezetasuna": 97.3
     },
     {
@@ -48067,7 +46159,7 @@
       "kodea": "C0E9",
       "max": 25.6,
       "min": 13.7,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 81.7
     },
     {
@@ -48076,7 +46168,7 @@
       "kodea": "C0E9",
       "max": 25.8,
       "min": 13.4,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 84.3
     },
     {
@@ -48085,7 +46177,7 @@
       "kodea": "C0E9",
       "max": 27.7,
       "min": 14.1,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 80.9
     },
     {
@@ -48094,7 +46186,7 @@
       "kodea": "C0E9",
       "max": 26.2,
       "min": 12.4,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 78.7
     },
     {
@@ -48103,16 +46195,16 @@
       "kodea": "C0E9",
       "max": 27.9,
       "min": 10.3,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 74.3
     },
     {
       "data": "2026-09-24",
       "estazioa": "Alegia",
       "kodea": "C0E9",
-      "max": 35.0,
+      "max": 32.7,
       "min": 11.2,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 75.3
     },
     {
@@ -48121,7 +46213,7 @@
       "kodea": "C0E9",
       "max": 24.2,
       "min": 12.1,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 82.5
     },
     {
@@ -48130,7 +46222,7 @@
       "kodea": "C0E9",
       "max": 25.2,
       "min": 15.2,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 82.8
     },
     {
@@ -48139,7 +46231,7 @@
       "kodea": "C0E9",
       "max": 31.8,
       "min": 13.8,
-      "euria": null,
+      "euria": 0.0,
       "hezetasuna": 79.7
     },
     {
@@ -48148,8 +46240,8 @@
       "kodea": "C0E9",
       "max": 30.5,
       "min": 16.6,
-      "euria": null,
-      "hezetasuna": 84.2
+      "euria": 1.7,
+      "hezetasuna": 80.7
     },
     {
       "data": "2026-09-29",
@@ -48157,8 +46249,8 @@
       "kodea": "C0E9",
       "max": 30.3,
       "min": 16.5,
-      "euria": null,
-      "hezetasuna": 67.6
+      "euria": 0.1,
+      "hezetasuna": 56.3
     },
     {
       "data": "2026-09-30",
@@ -48166,8 +46258,8 @@
       "kodea": "C0E9",
       "max": 30.7,
       "min": 16.2,
-      "euria": null,
-      "hezetasuna": 84.0
+      "euria": 11.1,
+      "hezetasuna": 81.4
     },
     {
       "data": "2026-10-01",
@@ -48456,6 +46548,15 @@
       "min": 9.6,
       "euria": null,
       "hezetasuna": 88.0
+    },
+    {
+      "data": "2026-11-02",
+      "estazioa": "Alegia",
+      "kodea": "C0E9",
+      "max": 15.1,
+      "min": 7.7,
+      "euria": null,
+      "hezetasuna": 88.2
     }
   ]
 }
